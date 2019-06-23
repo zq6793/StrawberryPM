@@ -1,0 +1,37 @@
+<view wx:hidden="{{ !authorized }}" class="page honme-page show">
+    <view wx:if="{{ isAuthorized }}">
+        <view class='loading'><image src="./../../images/home_loading.png"></image></view>
+        <view>短暂等待</view>
+        <view>只为接下来更美的风景...</view>
+    </view>
+    <view class="authorize" wx:if="{{ !isAuthorized }}">
+        <view class="authorize-bg"><image src="./../../images/authorize.png" resize="cover"></image></view>
+        <view class="text">
+            <view wx:if="{{ !showInfo }}">公寓云</view>
+            <image wx:else="{{ showInfo }}" src="./../../images/text.png"></image>
+            <view>[公寓管理系统员工端]</view>
+        </view>
+        <button class="btn" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" wx:if="{{ canIUse }}">
+            <image src="./../../images/authorize-btn.png"></image>
+            <view class='btn-text'>
+                <view>^</view>
+                <view>点击进入</view>
+            </view>
+        </button>
+        <view class="footer" wx:if="{{ showInfo }}"><image src="./../../images/footer.png"></image></view>
+    </view>
+</view>
+<view wx:if="{{ !authorized }}" class="page hint-page show">
+    <view class="cont" wx:if="{{ !showInfo }}">
+        <view><image src="./../../images/hint_page.png"></image></view>
+        <view class="title color-purple">温馨提示</view>
+        <view class="font color-gary">抱歉亲，此程序仅限集团员工使用, 您目前还没有使用权限哦～</view>
+        <view class="font color-gary mess">您要预约订房嘛？</view>
+        <view class="come_me font-small-b" bindtap="comeWithMe">跟我来</view>
+    </view>
+    <view class="cont" wx:else="{{ showInfo }}">
+        <view><image src="./../../images/hint_page.png"></image></view>
+        <view class="title color-purple">温馨提示</view>
+        <view class="font color-gary">您还不是该公司员工，不能使用该小程序</view>
+    </view>
+</view>

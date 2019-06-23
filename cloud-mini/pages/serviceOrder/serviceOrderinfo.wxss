@@ -1,0 +1,21 @@
+@import "../residentCenter/residentInformation.wxss";
+.service_dis{
+  padding: 10px 0;
+}
+.all_border::after,
+.all_border::before{
+  border: none;
+}
+.bottom-flex{
+    margin: 50rpx auto;
+    text-align: center;
+}
+.weui-btn{
+	width: 300rpx;
+  height: 88rpx;
+}
+button[type="primary"]{
+  background-color: #614789;
+  border: none;
+  color: #fff;
+}

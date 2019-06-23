@@ -1,0 +1,129 @@
+<view class="page">
+    <view class="weui-form-preview preview_panel">
+        <view class="weui-form-preview__bd">
+            <view class="weui-form-preview__item tip">
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label min_width color-back font-m">房间信息</view>
+                    <view class="weui-form-preview__value check-bill color-purple" bindtap="checkBill">查看账单</view>
+                </view>
+            </view>
+            <view class="weui-form-preview__item min_size font-middle">
+                <view class="weui-form-preview__label min_width">房间号码</view>
+                <view class="weui-form-preview__value">{{ owner.house.number }}</view>
+            </view>
+            <view class="weui-form-preview__item font-middle">
+                <view class="weui-form-preview__label min_width">房间面积</view>
+                <view class="weui-form-preview__value">{{ owner.house.area }}m<text class="sub">2</text></view>
+            </view>
+            <view class="weui-form-preview__item font-middle">
+                <view class="weui-form-preview__label min_width">房型</view>
+                <view class="weui-form-preview__value">{{ owner.house.room_count +'室'+ owner.house.hall_count + '厅' + owner.house.kitchen_count + '厨' + owner.house.bathroom_count +'卫'}}</view>
+            </view>
+            <view class="weui-form-preview__item font-middle">
+                <view class="weui-form-preview__label min_width">合同时长</view>
+                <view class="weui-form-preview__value">{{ owner.contract_years }}年</view>
+            </view>
+            <view class="weui-form-preview__item font-middle">
+                <view class="weui-form-preview__label min_width">保底租金</view>
+                <view class="weui-form-preview__value">{{ owner.minimum_rent }}元</view>
+            </view>
+        </view>
+    </view>
+
+    <view class="line"></view>
+
+    <view class="weui-panel weui-panel_access">
+        <view class="weui-panel__bd">
+            <view class="weui-media-box weui-media-box_text">
+                <view class="weui-media-box__title weui-media-box__title_in-text font-middle">租金递增比例</view>
+                <view class="weui-media-box__desc font-lilttle"><text wx:for="{{ increase }}" wx:key="index">第{{ index+1 }}年{{ item }}%; </text></view>
+            </view>
+            <view class="weui-media-box weui-media-box_text">
+                <view class="weui-media-box__title weui-media-box__title_in-text font-middle">免租期限</view>
+                <view class="weui-media-box__desc font-lilttle"><text wx:for="{{ noRent }}" wx:key="index">第{{ index+1 }}年{{ item }}个月; </text></view>
+            </view>
+        </view>
+    </view>
+
+    <view class="line"></view>
+
+    <view class="weui-form-preview preview_panel info">
+        <view class="weui-form-preview__bd">
+            <view class="weui-form-preview__hd tip">
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label color-back font-m">业主信息</view>
+                </view>
+            </view>
+            <view class="weui-form-preview__item min_size font-middle">
+                <view class="weui-form-preview__label min_width">姓名</view>
+                <view class="weui-form-preview__value">{{ owner.name }}</view>
+            </view>
+            <view class="weui-form-preview__item font-middle">
+                <view class="weui-form-preview__label min_width">联系方式</view>
+                <view class="weui-form-preview__value" data-phone="{{ owner.phone }}" catchtap="calling">{{ owner.phone }}</view>
+            </view>
+            <view class="weui-form-preview__item font-middle">
+                <view class="weui-form-preview__label min_width">身份证号码</view>
+                <view class="weui-form-preview__value">{{ owner.card_number }}</view>
+            </view>
+            <view class="weui-form-preview__item font-middle">
+                <view class="weui-form-preview__label min_width">代理人姓名</view>
+                <view class="weui-form-preview__value">{{ owner.agent_info.name }}</view>
+            </view>
+            <view class="weui-form-preview__item font-middle">
+                <view class="weui-form-preview__label min_width">联系方式</view>
+                <view class="weui-form-preview__value">{{ owner.agent_info.phone }}</view>
+            </view>
+        </view>
+
+        <view class="line"></view>
+
+        <view class="weui-form-preview__bd">
+            <view class="weui-form-preview__item">
+                <view class="weui-form-preview__label color-back font-m">身份证照片</view>
+            </view>
+            <view class='resident_documents weui-flex distance_bottom'>
+                <view class="img_distance" wx:for="{{ cardUrls.id_card }}" wx:key="index">
+                    <view class="resident_document">
+                        <image mode="aspectFill" data-card-type="id_card" data-img-side="{{ index }}" data-source="idCardUrls" bindtap="uploadOrPreview" bindtouchstart="touchStart" bindtouchend="touchEnd" src="{{ item }}"/>
+                    </view>
+                </view>
+            </view>
+        </view>
+
+        <view class="line"></view>
+
+        <view class="weui-form-preview__bd">
+            <view class="weui-form-preview__hd tip">
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label color-back font-m">银行卡信息</view>
+                </view>
+            </view>
+            <view class="weui-form-preview__item min_size font-middle">
+                <view class="weui-form-preview__label min_width">姓名</view>
+                <view class="weui-form-preview__value">{{ owner.account }}</view>
+            </view>
+            <view class="weui-form-preview__item font-middle">
+                <view class="weui-form-preview__label min_width">账号</view>
+                <view class="weui-form-preview__value">{{ owner.bank_card_number }}</view>
+            </view>
+            <view class="weui-form-preview__item font-middle">
+                <view class="weui-form-preview__label min_width">开户行</view>
+                <view class="weui-form-preview__value">{{ owner.bank_name }}</view>
+            </view>
+        </view>
+
+        <view class="line"></view>
+
+        <view class="weui-form-preview__bd">
+            <view class="weui-form-preview__item">
+                <view class="weui-form-preview__label color-back font-m">银行卡照片</view>
+            </view>
+            <view class='resident_documents weui-flex distance_bottom'>
+                <view class="img_distance" wx:for="{{ cardUrls.bank_card }}" wx:key="index"><view class="resident_document">
+                    <image mode="aspectFill" data-card-type="bank_card" data-source="bankCardUrls" data-img-side="{{ index }}" bindtap="uploadOrPreview" bindtouchstart="touchStart" bindtouchend="touchEnd" src='{{ item }}'></image></view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,96 @@
+<view class="page bg-white">
+    <view class="page__bd page__bd_spacing">
+        <view class="title-text font-lilttle">以下数据为当前实时数据</view>
+        <view class="weui-cells title-top">
+            <view class="weui-cell">
+                <view class="weui-cell__bd">入住率<text class="color-gary font-lilttle">(入住率=已出租/总房量)</text></view>
+                <view class="weui-cell__ft color-back">总房量:{{ totalRoom }}</view>
+            </view>
+        </view>
+        <view class="container">
+            <canvas canvas-id="ringPie" class="canvas" style="width:100%;height:300px" bindtouchstart="touchHandler"></canvas>
+        </view>
+        <view class="weui-cells title-top">
+            <view class="weui-cell">
+                <view class="weui-cell__bd">来访渠道</view>
+                <view class="weui-cell__ft color-back">总访客数:{{ totalVisitors }}</view>
+            </view>
+        </view>
+        <!-- <view class="weui-cell weui-cell_select font-middle">
+            <view class="weui-cell__hd">
+                <picker bindchange="visitChange" value="{{ visitIndex }}" range="{{ visit }}" range-key="{{'name'}}">
+                    <view class="weui-select">{{ visit[visitIndex].name }}</view>
+                </picker>
+            </view>
+        </view> -->
+        <view class="container">
+            <view class="null" wx:if="{{ isShowData }}">
+                <view class="null-img"><image src="./../../images/null_data.png" /></view>
+                <view class="text">
+                    <view class="font-m color-gary">矮油，数据飘走了~</view>
+                    <view class="font-lilttle">出去看看，下次再来</view>
+                </view>
+            </view>
+            <canvas canvas-id="pieCanvas" class="canvas" wx:else="{{ !isShowData }}" style="width:100%;height:300px" bindtouchstart="touchpie"></canvas>
+        </view>
+        <!-- <text class="title font-m">营业额</text>
+        <view class="container">
+            <canvas canvas-id="lineCanvas"  class="canvas" style="width:100%;height:200px" bindtouchstart="touchLine"></canvas>
+        </view> -->
+        <text class="title font-m">数据清单</text>
+        <view class="weui-flex font-lilttle">
+            <view class="weui-flex__item"><view class="placeholder">房型</view></view>
+            <view class="weui-flex__item"><view class="placeholder">总房量</view></view>
+            <view class="weui-flex__item"><view class="placeholder">空闲</view></view>
+            <view class="weui-flex__item"><view class="placeholder">已租</view></view>
+            <view class="weui-flex__item"><view class="placeholder">占用</view></view>
+            <view class="weui-flex__item"><view class="placeholder">出租率</view></view>
+        </view>
+        <view class="weui-flex font-lilttle list" wx:for="{{ list }}" wx:key="{{ index }}">
+            <view class="weui-flex__item"><view class="placeholder">{{ item.name }}</view></view>
+            <view class="weui-flex__item {{ item.styleClass ? 'middle-text' : '' }}"><view class="placeholder">{{ item.count_fxzfl }}</view></view>
+            <view class="weui-flex__item {{ item.styleClass ? 'middle-text' : '' }}"><view class="placeholder">{{ item.count_fxkx }}</view></view>
+            <view class="weui-flex__item {{ item.styleClass ? 'middle-text' : '' }}"><view class="placeholder">{{ item.count_fxyz }}</view></view>
+            <view class="weui-flex__item {{ item.styleClass ? 'middle-text' : '' }}"><view class="placeholder">{{ item.count_fxkn }}</view></view>
+            <view class="weui-flex__item {{ item.styleClass ? 'middle-text' : '' }}"><view class="placeholder">{{ item.count_fxbfb }}</view></view>
+        </view>
+        <view class="weui-flex font-lilttle list">
+            <view class="weui-flex__item"><view class="placeholder">总计</view></view>
+            <view class="weui-flex__item"><view class="placeholder">{{ total.hj_zfl }}</view></view>
+            <view class="weui-flex__item"><view class="placeholder">{{ total.hj_kx }}</view></view>
+            <view class="weui-flex__item"><view class="placeholder">{{ total.hj_yz }}</view></view>
+            <view class="weui-flex__item"><view class="placeholder">{{ total.hj_n }}</view></view>
+            <view class="weui-flex__item"><view class="placeholder">{{ total.hj_bfb }}</view></view>
+        </view>
+
+        <text class="data-s">以下所指天数均包含当天在内</text>
+        <view class="weui-flex font-lilttle free">
+            <view class="weui-flex__item"><view class="placeholder">房型</view></view>
+            <view class="weui-flex__item"><view class="placeholder">空置7天及以上</view></view>
+            <view class="weui-flex__item"><view class="placeholder">空置15天及以上</view></view>
+            <view class="weui-flex__item"><view class="placeholder">空置30天及以上</view></view>
+            <view class="weui-flex__item"><view class="placeholder">空置60天及以上</view></view>
+            <view class="weui-flex__item"><view class="placeholder">平均出房周期</view></view>
+        </view>
+        <view class="weui-flex font-lilttle list free" wx:for="{{ listStaus }}" wx:key="{{ index }}">
+            <view class="weui-flex__item"><view class="placeholder">{{ item.name }}</view></view>
+            <view class="weui-flex__item {{ item.styleClass ?'middle-text' : '' }}"><view class="placeholder">{{ item.count_fxkx15 }}</view></view>
+            <view class="weui-flex__item {{ item.styleClass ?'middle-text' : '' }}"><view class="placeholder">{{ item.count_fxkx30 }}</view></view>
+            <view class="weui-flex__item {{ item.styleClass ?'middle-text' : '' }}"><view class="placeholder">{{ item.count_fxkx60 }}</view></view>
+            <view class="weui-flex__item {{ item.styleClass ?'middle-text' : '' }}"><view class="placeholder">{{ item.count_fxkx61 }}</view></view>
+            <view class="weui-flex__item {{ item.styleClass ?'middle-text' : '' }}"><view class="placeholder">{{ item.average_type }}</view></view>
+        </view>
+        <view class="weui-flex font-lilttle list free">
+            <view class="weui-flex__item"><view class="placeholder">总计</view></view>
+            <view class="weui-flex__item"><view class="placeholder">{{ totalStaus.hj_fxkx15 }}</view></view>
+            <view class="weui-flex__item"><view class="placeholder">{{ totalStaus.hj_fxkx30 }}</view></view>
+            <view class="weui-flex__item"><view class="placeholder">{{ totalStaus.hj_fxkx60 }}</view></view>
+            <view class="weui-flex__item"><view class="placeholder">{{ totalStaus.hj_fxkx61 }}</view></view>
+            <view class="weui-flex__item"><view class="placeholder">{{ totalStaus.average_project }}</view></view>
+        </view>
+        <view class="mess font-lilttle color-gary">
+            <view>平均出房周期（户型）= 该户型房间空置天数总和/户型房间总数</view>
+            <view>平均出房周期（总计）= 该门店房间空置天数总和/门店房间总数</view>
+        </view>
+    </view>
+</view>

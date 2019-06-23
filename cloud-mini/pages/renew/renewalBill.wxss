@@ -1,0 +1,54 @@
+.weui-cell{
+	height: 90rpx;
+}
+.youhui{color:rgba(0,0,0,0.6)}
+.weui-btn{
+	width: 690rpx;
+	height: 88rpx;
+	margin: 50rpx auto;
+}
+.font_color{
+  color: rgba(0,0,0,0.5)
+}
+.check-in-list{
+	height: 80rpx;
+	line-height: 80rpx;
+}
+.name{
+	width: 154rpx;
+}
+.info{
+	text-align: left;
+}
+.title{
+	height: 80rpx;
+	border-top: none;
+}
+.coupon,
+.renewal{
+	margin-top: 20rpx;
+}
+.coupon .weui-check__label:first-child{
+	border-top: 1px #ededed solid;
+}
+.bottom-flex{
+  width: 100%;
+  margin: 50rpx auto;
+  text-align: center;
+}
+
+.weui-cell__ft{font-size: 28rpx;}
+
+.weui-cells::after{
+	border-bottom: none;
+}
+.weui-cells::before{
+	border-top: none;
+}
+.placeholder{
+  font-size: 24rpx;
+}
+.tips{
+  padding: 0 30rpx;
+  margin: -10rpx 0 10rpx 0;
+}

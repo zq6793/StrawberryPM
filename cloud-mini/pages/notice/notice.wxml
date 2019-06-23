@@ -1,0 +1,56 @@
+<view class="page">
+    <view class="page__bd">
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_select font-m">
+                <view class="weui-cell__hd weui-cell__hd_in-select-after">
+                    <view class="weui-label color-back">通知门店</view>
+                </view>
+                <view class="weui-cell__bd">{{ store_name }}</view>
+            </view>
+        </view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_select font-m">
+                <view class="weui-cell__hd weui-cell__hd_in-select-after">
+                    <view class="weui-label color-back">通知类型</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <picker bindchange="bindCountryChange" value="{{ countryIndex }}" range="{{ country }}" range-key="{{ 'noticeName' }}">
+                        <view class="weui-select weui-select_in-select-after color-gary">{{country[countryIndex].noticeName}}</view>
+                    </picker>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_select font-m">
+                <view class="weui-cell">
+                    <view class="weui-cell__hd"><view class="weui-label color-gary">时间</view></view>
+                    <view class="weui-cell__bd color-back">
+                        <input class="weui-input" placeholder-class="placeholder" bindinput="changeTime" placeholder="如：2010年11月11日 上午9点" value="{{ time }}" />
+                    </view>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_select font-m">
+                <view class="weui-cell">
+                    <view class="weui-cell__hd"><view class="weui-label color-gary">范围</view></view>
+                    <view class="weui-cell__bd color-back">
+                        <input class="weui-input" placeholder-class="placeholder" bindinput="changeRange" placeholder="如：草莓社区优城店" value="{{ range }}" />
+                    </view>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_select font-m">
+                <view class="weui-cell">
+                    <view class="weui-cell__hd"><view class="weui-label color-gary">原因</view></view>
+                    <view class="weui-cell__bd color-back">
+                        <input class="weui-input" placeholder-class="placeholder" bindinput="changeContent" placeholder="请填写通知原因" value="{{ content }}" />
+                    </view>
+                </view>
+            </view>
+        </view>
+
+        <view class="page__bd_spacing bottom-flex" > 
+            <view class="weui-flex">
+                <view class="weui-flex__item"> 
+                    <button class="weui-btn" type="primary"  bindtap='confirmSending'>确认发送</button>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

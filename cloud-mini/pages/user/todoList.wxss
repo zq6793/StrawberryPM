@@ -1,0 +1,21 @@
+@import "../residentCenter/residentCenter.wxss";
+.page__bd{
+	margin-top: 20rpx;
+}
+.service_img{
+	width: 99rpx;
+	height: 99rpx;
+	line-height: 99rpx;
+	text-align: center;
+	border-radius: 50%;
+	background: rgba(88,55,138,.59);
+}
+.service_img i{
+	font-size: 30px;
+	color: #fff;
+}
+.number{
+	border-radius:100%;
+	margin-top:-72rpx;
+	margin-left:-51rpx;
+}

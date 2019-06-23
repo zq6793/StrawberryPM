@@ -1,0 +1,118 @@
+<view class="page">
+    <view class="weui-cells__title">房间信息</view>
+    <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+                <view class="weui-label">房间号</view>
+            </view> 
+            <view class="weui-cell__bd">
+                <input class="weui-input" bindinput="roomChange" name="roomNuber" bindblur="room" placeholder="请输入房间号" bindfocus="isNewRoom" placeholder-class="placeholder"/>
+            </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+                <view class="weui-label">定金</view>
+            </view> 
+            <view class="weui-cell__bd">
+                <input class="weui-input" bindchange="bookPriceChange" value="{{book_money}}" placeholder="请输入房间定金" placeholder-class="placeholder"/>
+            </view>
+        </view>
+        <view class="weui-cell weui-cell_select">
+            <view class="weui-cell__hd">
+                <view class="weui-label">起租日期</view>
+            </view>
+            <view class="weui-cell__bd">
+                <picker mode="date"  bindchange="bookedDateChange" value="{{book_time}}">
+                    <view class="weui-select">{{book_time}}</view>
+                </picker>
+            </view>
+        </view>
+        <view class="weui-cell weui-cell_select">
+            <view class="weui-cell__hd">
+                <view class="weui-label">合同时长</view>
+            </view>
+            <view class="weui-cell__bd">
+                <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="multiIndex" range="{{multiArray}}" range-key="{{'multiName'}}">
+                    <view class="weui-select">{{multiArray[0][multiIndex[0]].multiName}}-{{multiArray[1][multiIndex[1]].multiName}}</view>
+                </picker>
+            </view>
+        </view>
+        <view class="weui-cell weui-cell_input" >
+            <view class="weui-cell__hd">
+                <view class="weui-label">月租原价</view>
+            </view>
+            <view class="weui-cell__bd">{{rentPrice}}</view>
+            <view class="weui-cell__ft unit">元</view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+                <view class="weui-label">物业服务费</view>
+            </view>
+            <view class="weui-cell__bd">{{managementPrice}}</view>
+            <view class="weui-cell__ft unit">元</view>
+        </view>
+    </view>
+
+    <view class="weui-cells__title">个人信息</view>
+    <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+                <view class="weui-label">姓名</view>
+            </view> 
+            <view class="weui-cell__bd">
+                <input class="weui-input" bindchange="nameChange" value="{{name}}" placeholder="请输入用户姓名" placeholder-class="placeholder"/>
+            </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+                <view class="weui-label">电话</view>
+            </view> 
+            <view class="weui-cell__bd">
+                <input class="weui-input" bindchange="phoneChange" value="{{phone}}" placeholder="请输入用户电话" placeholder-class="placeholder"/>
+            </view>
+        </view>
+        <view class="weui-cell weui-cell_select">
+            <view class="weui-cell__hd">
+                <view class="weui-label">证件类型</view>
+            </view>
+            <view class="weui-cell__bd">
+                <picker bindchange="documentChange" value="{{documentIndex}}" range="{{documentArray}}" range-key="{{'name'}}">
+                    <view class="weui-select weui-select_in-select-after">{{ cardTypeOne }}</view>
+                </picker>
+            </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+                <view class="weui-label">证件号码</view>
+            </view>
+            <view class="weui-cell__bd">
+                <input class="weui-input" placeholder="请输入住户的证件号码" placeholder-class="place_holder" value="{{ idcard }}" bindinput="householdID"/>
+            </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+                <view class="weui-label">特别条款</view>
+            </view>
+            <view class="weui-cell__bd">
+                <input class="weui-input" placeholder="填写特别条款" placeholder-class="place_holder" value="{{clause}}" bindchange="clauseChange" />
+            </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+                <view class="weui-label">备注</view>
+            </view>
+            <view class="weui-cell__bd">
+                <input class="weui-input" placeholder="填写其他备注" placeholder-class="place_holder" value="{{remark}}" bindchange="remarkChange" />
+            </view>
+        </view>
+    </view>
+
+    <button class="weui-btn" type="primary" bindtap='makeSure'>确认预订</button>
+         
+    <view class='code' wx:if="{{isShowCode}}">
+      <view class="code-cont bg-white">            
+          <image class="code-img" src="{{codeUrl}}"></image>
+          <text class="scan-code-end" bindtap='colseCode'>已完成扫码</text>
+      </view>
+    </view>
+</view>

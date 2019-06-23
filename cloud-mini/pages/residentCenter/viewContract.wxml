@@ -1,0 +1,1 @@
+<web-view src="{{ contract_url }}"></web-view>

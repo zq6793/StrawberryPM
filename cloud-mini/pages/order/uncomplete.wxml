@@ -1,0 +1,78 @@
+<view class="page">
+    <view class="weui-panel weui-panel_access all_border">
+        <view class="weui-panel__hd font-m color-back">订单信息</view>
+        <view class="weui-panel__bd">
+            <view class="weui-form-preview__bd all_border">
+                <view class="weui-form-preview__item min_size">
+                    <view class="weui-form-preview__label min_width font-middle">入住房间</view>
+                    <view class="weui-form-preview__value font-middle">{{ uncompletes.room.number }}</view>
+                </view>
+                <view class="weui-form-preview__item min_size">
+                    <view class="weui-form-preview__label min_width font-middle">姓名</view>
+                    <view class="weui-form-preview__value font-middle">{{ uncompletes.name }}</view>
+                </view>
+                <view class="weui-form-preview__item min_size">
+                    <view class="weui-form-preview__label min_width font-middle">联系方式</view>
+                    <view class="weui-form-preview__value font-middle color-green" data-phone='{{ uncompletes.phone }}' catchtap="calling">{{ uncompletes.phone }}</view>
+                </view>
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label min_width font-middle">入住时间</view>
+                    <view class="weui-form-preview__value font-middle">{{ uncompletes.begin_time }}</view>
+                </view>
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label min_width font-middle">住宿服务费</view>
+                    <view class="weui-form-preview__value font-middle">{{ uncompletes.rent_price }}</view>
+                </view>
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label min_width font-middle">物业服务费</view>
+                    <view class="weui-form-preview__value font-middle">{{ uncompletes.management_price }}</view>
+                </view>
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label min_width font-middle">合同时长</view>
+                    <view class="weui-form-preview__value font-middle">{{ uncompletes.contract_time }}</view>
+                </view>
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label min_width font-middle">支付类型</view>
+                    <view class="weui-form-preview__value font-m" wx:if="{{ uncompletes.pay_type === 1 }}">月付</view>
+                    <view class="weui-form-preview__value font-m" wx:elif="{{ uncompletes.pay_type === 3 }}">季付</view>
+                    <view class="weui-form-preview__value font-m" wx:elif="{{ uncompletes.pay_type === 6 }}">半年付</view>
+                    <view class="weui-form-preview__value font-m" wx:else="{{ uncompletes.pay_type === 12 }}">年付</view>
+                </view>
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label min_width font-middle">首次付款</view>
+                    <view class="weui-form-preview__value font-middle">{{ uncompletes.first_pay }}</view>
+                </view>
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label min_width font-middle">住宿押金</view>
+                    <view class="weui-form-preview__value font-middle">{{ uncompletes.deposit_money_rent }}</view>
+                </view>
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label min_width font-middle">定金</view>
+                    <view class="weui-form-preview__value font-middle">{{ uncompletes.book_money }}</view>
+                </view>
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label min_width font-middle">其他押金</view>
+                    <view class="weui-form-preview__value font-middle">{{ uncompletes.deposit_money_other }}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view class="page__bd page__bd_spacing bottom-flex">
+        <view class="weui-flex">
+            <view class="weui-flex__item">
+                <button class="weui-btn" wx:if='{{ renewCancel }}' type="primary" plain="true" bindtap='gobackRenewCancel'>取消办理</button>
+                <button class="weui-btn" wx:else type="primary" plain="true" bindtap='goback'>取消办理</button>
+            </view>
+            <view class="weui-flex__item">
+                <button class="weui-btn" type="primary" bindtap='checkIn'>确认办理</button>
+            </view>
+        </view>
+    </view>
+    <view class='code' wx:if="{{ isShowCode }}">
+        <view class="code-cont bg-white">            
+            <image class="code-img" src="{{codeUrl}}"></image>
+            <text class="scan-code-end" bindtap='colseCode'>已完成扫码</text>
+        </view>
+    </view>
+</view>

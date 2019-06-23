@@ -1,0 +1,6 @@
+[submodule "src/pcc"]
+	path = src/pcc
+	url = http://git.fun-x.cn/paperchain/pcc.git
+[submodule "src/review-theme"]
+	path = src/review-theme
+	url = http://git.fun-x.cn/paperchain/review-theme.git

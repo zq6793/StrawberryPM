@@ -1,0 +1,28 @@
+pipeline:
+  build:
+    image: registry.cn-beijing.aliyuncs.com/wa/dev:vue
+    when:
+      event: push
+      branch: master
+    secrets: [ upx_user, upx_passwd ]
+    commands:
+      - make env
+      - npm run build
+      - upx login dev-paperchain $UPX_USER $UPX_PASSWD
+      - upx sync ./dist/static/ /static/
+      - upx sync ./dist/index.html /index.html
+
+  release-pre:
+    image: registry.cn-beijing.aliyuncs.com/wa/dev:vue
+    when:
+      event: push
+      branch: release-*
+    secrets: [ upx_user, upx_passwd ]
+    commands:
+      - echo $DRONE_BRANCH $DRONE_COMMIT
+      - make env
+      - npm run build
+      - upx login paperchain $UPX_USER $UPX_PASSWD
+      - upx sync ./dist/static/ /static/
+      - upx sync ./dist/index.html index.html
+      - upx sync ./dist/index.html /.bak/index.html-$DRONE_COMMIT

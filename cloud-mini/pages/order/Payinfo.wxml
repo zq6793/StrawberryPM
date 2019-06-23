@@ -1,0 +1,65 @@
+<view class="page">  
+<!-- 缴费信息录入 -->
+<view class="weui-cells weui-cells_after-title font-lilttle pay-list">
+    <view class="weui-cells__title">缴费信息录入</view>
+    <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input pay-li">
+            <view class="weui-cell__bd">支付金额</view>
+            <view class="weui-cell__ft">
+                <input class="weui-input" placeholder="请输入支付金额" type="digit" value="{{ money }}" bindinput="paymentAmout" />
+            </view>
+        </view>
+        <view class="weui-cell weui-cell_input pay-li">
+            <view class="weui-cell__bd">支付方式</view>
+            <view class="weui-cell__ft">
+                <picker bindchange="bindPayTypeChange" value="{{ payTypeIndex }}" range="{{ payType }}" range-key="{{'depositName'}}">
+                    <view class="weui-select weui-select_in-select-after">{{ show_pay_way }}</view>
+                </picker>
+            </view>
+        </view>
+
+        <view class="weui-cell pay-lI">
+            <view class="weui-cell__bd">支付日期</view>
+            <view class="weui-cell__ft">
+                <picker mode="date" value="{{ payDate }}" bindchange="bindPayChange" start="" end="{{ endTime }}">
+                    <view class="weui-select weui-select_in-select-after">{{ show_pay_date }}</view>
+                </picker>
+            </view>
+        </view>            
+        <view class="weui-cell weui-cell_input pay-li">
+            <view class="weui-cell__bd">交易单号</view>
+            <view class="weui-cell__ft">
+                <input class="weui-input" placeholder="请输入交易单号" value="{{ oddNumber }}" bindinput="oddNumber" />
+            </view>
+        </view>
+        <view class="weui-cells weui-cells_after-title room-pic">
+            <view class="room-pic-top font-lilttle">上传图片<text class="status_red">请上传交易凭证或交易截图最多5张(长按删除)</text></view>
+            <view class="weui-cells weui-cells_after-title room-picture">
+                <view  class="weui-form-preview__item">
+                    <view class="weui-form-preview__value">
+                        <view class="img_distances" wx:for="{{ imgFiles }}" wx:for-index="index" data-ImgIndex="{{ index }}" id="{{ item }}" bindtap="previewImage" bindlongpress="deteleImage" wx:key="index">
+                            <view class="resident_documents weui-uploader__file">
+                                <image mode="weui-uploader__img" data-ImgIndex="{{ index }}" src="{{ item }}" mode="aspectFill" />
+                            </view>
+                        </view>
+                        <view class="add_pic" wx:if="{{ showAddImg }}" catchtap="roomPicture">+</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="weui-cell weui-cell_input pay-li">
+            <view class="weui-cell__bd">备注</view>
+            <view class="weui-cell__ft">
+                <input class="weui-input" placeholder="请填写备注" value="{{ remarks }}" bindinput="remarks" />
+            </view>
+        </view>
+    </view>
+
+    <view class="page__bd page__bd_spacing bottom-flex">
+        <view class="weui-flex">
+            <view class="weui-flex__item"><button class="weui-btn" type="primary" bindtap="goBack" plain="true">取消</button></view>
+            <view class="weui-flex__item"><button class="weui-btn" type="primary" bindtap='confirm'>确定</button></view>
+        </view>
+    </view>
+</view>
+</view>

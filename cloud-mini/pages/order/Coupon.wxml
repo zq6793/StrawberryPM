@@ -1,0 +1,23 @@
+<view class="page">  
+<!-- 选择优惠券 -->
+<view class="weui-cells weui-cells_after-title font-lilttle coupon-list">
+<checkbox-group bindchange="checkboxCoupon">
+    <label class="weui-cell coupon_label weui-check__label" wx:for="{{couponList}}"  wx:key="value">
+        <image src='./../../images/coupon.png'></image>
+        <view class='coupon-cont'>
+          <checkbox class="weui-check" value="{{item.id}}" checked="{{item.checked}}"/>
+          <view class="weui-cell__bd font-big coupon-money color-white">{{'￥'+item.discount}}</view>
+          <view class="weui-cell__ft color-purple">
+            <view class="coupon-text">{{item.name}}</view>
+            <view class='coupon-text'>有效期至{{item.deadline}}</view>
+          </view>
+          <view class="weui-cell__hd weui-check__hd_in-checkbox">
+              <icon class="weui-icon-checkbox_circle" type="circle" size="22" wx:if="{{!item.ischecked}}"></icon>
+              <icon class="weui-icon-checkbox_success" type="success" size="22" wx:if="{{item.ischecked}}"></icon>
+          </view>
+        </view> 
+    </label>
+</checkbox-group>
+<button class="weui-btn comfirm" type="primary" bindtap="sure_coupon">确定</button>
+</view>
+</view>

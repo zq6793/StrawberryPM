@@ -1,0 +1,43 @@
+.code{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,.5);
+}
+.code-cont{
+  width:372rpx;
+  height: 431rpx;
+  text-align: center;
+  position: relative;
+  top: 24%;
+  left: 25%;
+  border-radius: 8rpx;
+}
+.code-img{
+  width:100%;
+  height:188px;
+  border-bottom: 1px solid #f2f2f2;
+  border-radius: 8rpx;
+}
+.scan-code-end{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  color: rgb(136, 136, 136);
+  font-size: 14px;
+  height:54rpx;
+  line-height: 54rpx;
+  display:block;
+  text-align: center;
+}
+.weui-btn{
+  position: absolute;
+  bottom: 218rpx;
+  width: 670rpx;
+  height: 94rpx;
+  z-index: 10;
+  left: 40rpx;
+}

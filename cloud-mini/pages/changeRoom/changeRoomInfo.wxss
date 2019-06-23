@@ -1,0 +1,89 @@
+.page__hd{
+  margin-top: 20rpx;
+}
+.title{
+  height: 90rpx;
+  line-height: 90rpx;
+  padding: 0 30rpx;
+}
+.weui-cells{
+  margin-top: 0;
+}
+.weui-cell {
+  height: 70rpx;
+  line-height: 70rpx;
+}
+.line{ 
+  width: 100%; 
+  height: 20rpx; 
+}
+.img_distance{
+  font-size: 28rpx;
+  margin: 0 auto;
+  text-align: center;
+}
+.distance_bottom{
+  width: 100%;
+  height: 150rpx;
+  margin: 40rpx auto;
+}
+.resident_document,
+.resident_documents {
+  width:150rpx;
+  height: 150rpx;
+  line-height: 150rpx;
+  border: 1rpx solid #d9d9d9;
+} 
+.resident_document image,
+.resident_documents image{
+  width:150rpx;
+  height: 150rpx;
+}
+.img_distances{
+  margin-left: 20rpx;
+}
+.add_pic{
+  width:150rpx;
+  height: 150rpx;
+  line-height: 150rpx;
+  border: 1px #ededed solid;
+  text-align: center;
+  float:left;
+}
+.room-picture{
+  padding: 0 20rpx 10rpx 30rpx;
+}
+.tips{
+  padding-left: 30rpx;
+  margin: -10rpx 0 10rpx 0;
+}
+.bottom-flex{
+  margin-top: 50rpx;
+}
+.change-house{
+  width: 90%;
+  margin: 50rpx auto;
+}
+.bottom-flex{
+  margin: 50rpx auto;
+  text-align: center;
+}
+.weui-btn{
+  width: 300rpx;
+  height: 88rpx;
+}
+button[type="primary"]{
+  background-color: #614789;
+  border: none;
+  color: #fff;
+}
+
+.weui-cells::before,
+.weui-cell::before{
+  border-top: none;
+}
+.weui-form-preview__hd::after,
+.weui-form-preview::after,
+.weui-cells::after{
+  border-bottom: none;
+}

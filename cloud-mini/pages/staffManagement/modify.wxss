@@ -1,0 +1,11 @@
+.weui-btn{
+  margin-bottom: 50rpx;
+  height: 88rpx;
+  width: 690rpx;
+}
+.weui-btn{width: 690rpx;height: 88rpx; }
+ .btn[type="primary"]{background-color: #614789; }
+.btn{margin: 50rpx auto;}
+.weui-btn:first-child{
+  margin-top: 50rpx;
+}

@@ -1,0 +1,61 @@
+.pic-cont{
+  padding: 10rpx;
+  margin: 0 auto;
+}
+.pic-cont .pic{
+  width: 140rpx;
+  height: 140rpx;
+  border: 1px #f2f2f2 solid;
+  text-align: center;
+  margin:7px;
+}
+.weui-btn{
+  width: 300rpx;
+  height: 88rpx;
+}
+.bottom-flex{
+  margin: 50rpx auto;
+  text-align: center;
+}
+button[type="primary"]{
+  background-color: #614789;
+  border: none;
+  color: #fff;
+}
+.font_color{
+  color: rgba(0,0,0,0.5)
+}
+.weui-cells__title{
+  margin-top:0;
+  margin-bottom:0;
+}
+.user-two{
+  margin: 10px 0;
+}
+.user-two .text{
+  float: left;
+}
+.user-two .arrow{
+  width: 40rpx;
+  float: right;
+  margin-top: 5rpx;
+}
+.user-two .arrow image{
+  width: 40rpx;
+  height: 33rpx;
+}
+.user-cont{
+  margin:-9px 0 10px;
+}
+.title{
+  height: 90rpx;
+  line-height: 90rpx;
+  padding: 0 30rpx;
+}
+
+.weui-cells::after{
+  border-bottom: none;
+}
+.weui-cells::before{
+  border-top: none;
+}

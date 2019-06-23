@@ -1,0 +1,94 @@
+<view class="page">
+    <view class="page__bd page__bd_spacing">
+        <view class="weui-flex info-header">
+            <view class="weui-flex__item  check_title"><view class="placeholder">填写房间信息</view><image src='./../../images/fir_arrow.png' class='fir_arrow'></image></view>
+            <view class="weui-flex__item font_color check_title"><view class="placeholder">填写个人信息</view><image src='./../../images/fir_arrow.png' class='fir_arrow'></image></view>
+            <view class="weui-flex__item font_color"><view class="placeholder">生成订单</view></view>
+        </view>
+    </view>
+    
+    <view class="page__bd bg-white cont">
+        <view class="title">房间信息</view>
+        <view class="weui-cell weui-cell_access">
+            <view class="weui-cell__bd">
+                <view>入住房间</view>
+            </view>
+            <view class="weui-cell__ft">{{ confirmInfo.room.number }}</view>
+        </view>
+        <view class="weui-cell weui-cell_access">
+            <view class="weui-cell__bd">
+                <view>入住时间</view>
+            </view>
+            <view class="weui-cell__ft">{{ confirmInfo.begin_time }}</view>
+        </view>
+        <view class="weui-cell weui-cell_access">
+            <view class="weui-cell__bd">
+                <view>住宿服务费</view>
+            </view>
+            <view class="weui-cell__ft">{{ confirmInfo.rent_price }}元/月</view>
+        </view>
+        <view class="weui-cell weui-cell_access">
+            <view class="weui-cell__bd">
+                <view>物业服务费</view>
+            </view>
+            <view class="weui-cell__ft">{{ confirmInfo.management_price }}元/月</view>
+        </view>
+        <view class="weui-cell weui-cell_access">
+            <view class="weui-cell__bd">
+                <view>合同时长</view>
+            </view>
+            <view class="weui-cell__ft">{{ confirmInfo.contract_time }}个月</view>
+        </view>
+        <view class="weui-cell weui-cell_access">
+            <view class="weui-cell__bd">
+                <view>付费方式</view>
+            </view>
+            <view class="weui-cell__ft">{{ payType }}</view>
+        </view>
+    </view>
+
+    <view class="page__bd bg-white content cont">
+        <view class="title">缴费及押金</view>
+        <!-- <view class="weui-cell weui-cell_access">
+            <view class="weui-cell__bd">
+                <view>首次支付</view>
+            </view>
+            <view class="weui-cell__ft">{{ confirmInfo.first_pay }}元</view>
+        </view> -->
+        <view class="weui-cell weui-cell_access">
+            <view class="weui-cell__bd">
+                <view>住宿押金</view>
+            </view>
+            <view class="weui-cell__ft">{{ confirmInfo.deposit_money_rent }}元</view>
+        </view>
+        <view class="weui-cell weui-cell_access">
+            <view class="weui-cell__bd">
+                <view>其它押金</view>
+            </view>
+            <view class="weui-cell__ft">{{ confirmInfo.deposit_money_other }}元</view>
+        </view>
+    </view>
+    <!-- <view class="page__bd bg-white sawtooth">
+        <view class="title total">
+            <span>总计</span>
+            <span class='total-price'>{{ total }}</span>
+            <span>元</span>
+        </view>
+    </view> -->
+    <view class="page__bd page__bd_spacing bottom-flex">
+        <view class="weui-flex">
+            <view class="weui-flex__item">
+                <button class="weui-btn" type="primary" plain="true" bindtap='goback'>取消办理</button>
+            </view>
+            <view class="weui-flex__item">
+                <button class="weui-btn" type="primary" bindtap='checkIn'>确认办理</button>
+            </view>
+        </view>
+    </view>
+    <view class='code' wx:if="{{ isShowCode }}">
+        <view class="code-cont bg-white">            
+            <image class="code-img" src="{{ codeUrl }}"></image>
+            <text class="scan-code-end" bindtap='colseCode'>确认订单并扫码关注</text>
+        </view>
+    </view>
+</view>

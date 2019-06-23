@@ -1,0 +1,27 @@
+<view class="page">
+    <view class="page__bd bg-white font-m">
+        <navigator class="weui-cell weui-cell_access list" hover-class="none" url='/pages/user/todo'>
+            <view class="weui-cell__hd service_img"><i class="iconfont icon-tuifang"></i></view>
+            <!-- <view class="weui-badge number {{ isShowNumber }}">{{ info.count_refund }}</view> -->
+            <view class="weui-badge number">{{ info.count_refund }}</view>
+            <view class="weui-cell__bd">退房</view>
+            <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+        </navigator>
+    </view>
+    <view class="page__bd bg-white font-m">
+        <navigator class="weui-cell weui-cell_access list" hover-class="none" url="">
+            <view class="weui-cell__hd service_img"><i class="iconfont icon-zhuanzu"></i></view>
+            <view class="weui-badge number">{{ info.count_sublease }}</view>
+            <view class="weui-cell__bd">转租</view>
+            <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+        </navigator>
+    </view>
+    <view class="page__bd bg-white font-m">
+        <navigator class="weui-cell weui-cell_access list" hover-class="none" url=''>
+            <view class="weui-cell__hd service_img"><i class="iconfont icon-xinxi-copy"></i></view>
+            <view class="weui-badge number">{{ info.count_messagesnd }}</view>
+            <view class="weui-cell__bd">通知</view>
+            <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+        </navigator>
+    </view>
+</view>

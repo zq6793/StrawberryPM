@@ -1,0 +1,48 @@
+.pay-cont{
+	text-align: center;
+	padding:10rpx 30rpx;
+	margin: 0;
+  position: relative;
+}
+.pay-cont::after{
+  content:" ";
+  position:absolute;
+  bottom:0;
+  right:0;
+  height:1px;
+  border-bottom:1rpx solid #f2f2f2;
+  color:#f2f2f2;
+  left:15px;
+}
+.renew-cont{
+	margin-top: 20rpx;
+}
+.renew-cont navigator:last-child::after{
+  border-bottom: none;
+}
+.user-text{
+	text-align: left;
+}
+.user-imgs{
+	width: 90rpx; 
+	height: 90rpx; 
+	margin-right: 30rpx;
+}
+.user-imgs image{
+	width: 100%;
+	height: 100%;
+	border-radius: 50%; 
+	-webkit-border-radius:50%;
+}
+.userImg{
+  margin: auto 0;
+}
+.renew-tip{
+	background: #fff;
+	height: 88rpx;
+	margin-bottom: 20rpx;
+}
+.add{
+  font-size: 60rpx;
+  color: rgb(199, 199, 204)
+}

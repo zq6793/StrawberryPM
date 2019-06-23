@@ -1,0 +1,161 @@
+<view class="page">
+    <view class="page__bd">
+        <view class="weui-cells weui-cells_after-title font-middle color-gary old-room">
+            <view class="weui-cell">
+                <view class="weui-cell__bd color-back font-m title">原房间信息</view>
+            </view>
+
+            <view class="weui-cell">
+                <view class="weui-cell__bd">门店名称</view>
+                <view class="weui-cell__ft">{{ store_name }}</view>
+            </view>
+
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">房间号</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input color-back" auto-focus placeholder="请输入房间号" name="roomNumber" value="{{ roomNumber }}" bindinput="roomNumberInput"  bindblur="room" style="text-align: right" />
+                </view>
+            </view>
+
+            <view class="weui-cell">
+                <view class="weui-cell__bd">租户姓名</view>
+                <view class="weui-cell__ft">{{ userInfo.resident.name }}</view>
+            </view>
+
+            <view class="weui-cell">
+                <view class="weui-cell__bd">联系方式</view>
+                <view class="weui-cell__ft">{{ userInfo.resident.phone }}</view>
+            </view>
+
+            <view class="weui-cell">
+                <view class="weui-cell__bd">住宿服务费</view>
+                <view class="weui-cell__ft">{{ userInfo.resident.real_rent_money }}元</view>
+            </view>
+
+            <view class="weui-cell">
+                <view class="weui-cell__bd">物业服务费</view>
+                <view class="weui-cell__ft">{{ userInfo.resident.real_property_costs }}元</view>
+            </view>
+            <view class="weui-cell">
+                <view class="weui-cell__bd">住宿押金</view>
+                <view class="weui-cell__ft">{{ userInfo.resident.deposit_money }}元</view>
+            </view>
+
+            <view class="weui-cell">
+                <view class="weui-cell__bd">其他押金</view>
+                <view class="weui-cell__ft">{{ userInfo.resident.tmp_deposit }}元</view>
+            </view>
+
+            <view class="weui-cell">
+                <view class="weui-cell__bd">合同日期</view>
+                <view class="weui-cell__ft">{{ userInfo.resident.begin_time }}~{{ userInfo.resident.end_time }}</view>
+            </view>
+        </view>
+
+        <view class="line"></view>
+        <view class="weui-cells weui-cells_after-title font-middle color-gary old-room">
+            <view class="weui-cell">
+                <view class="weui-cell__bd color-back font-m title">换房信息</view>
+            </view>
+
+            <view class="weui-cell weui-cell_select">
+                <view class="weui-cell__bd">
+                    <view class="weui-label">换房类型</view>
+                </view>
+                <view class="weui-cell__ft">
+                 <!--    <picker mode="multiSelector" bindchange="changeRoomTypeChange" bindcolumnchange="" value="rommIndex" range="{{changeRoomType}}" range-key="{{'multiName'}}">
+                        <view class="weui-select">{{ changeRoomType[rommIndex].multiName }}</view>
+                    </picker> -->
+                    同门店换房
+                </view>
+            </view>
+
+            <view class="weui-cell weui-cell_select">
+                <view class="weui-cell__bd">
+                    <view class="weui-label">换房日期</view>
+                </view>
+                <view class="weui-cell__ft">
+                    <picker mode="date" bindchange="changeRoomDateChange" value="{{ changeRoomData }}">
+                        <view class="weui-select">{{ changeRoomData }}</view>
+                    </picker>
+                </view>
+            </view>
+
+            <view class="weui-cell">
+                <view class="weui-cell__bd">备注</view>
+                <view class="weui-cell__ft">
+                    <input class="weui-input" placeholder="请输入换房备注" value="{{ reason }}" bindinput="reason" />
+                </view>
+            </view>
+        </view>
+
+        <view class="line"></view>
+        <view class="weui-cells weui-cells_after-title font-middle color-gary check-out">
+            <view class="weui-cell">
+                <view class="weui-cell__bd color-back font-m title">原房间设备抄表</view>
+            </view>
+
+            <view class="weui-cell weui-cell_select font-m meter-eading" wx:for="{{ readingList }}" wx:key="{{ index }}">
+                <view class="weui-cell reading">
+                    <view class="weui-cell__hd"><view class="weui-label color-gary">{{ item.name }}读数</view></view>
+                    <view class="weui-cell__bd color-back">
+                        <input class="weui-input" placeholder-class="placeholder" bindinput="templatesValue" data-key="{{ item.field }}" placeholder="输入{{ item.name }}读数" value="{{  }}"  type="digit" />
+                    </view>
+                </view>
+                <view class="weui-cell weight">
+                    <view class="weui-cell__hd"><view class="weui-label color-gary">权重</view></view>
+                    <view class="weui-cell__bd color-back">
+                        <input class="weui-input" placeholder-class="placeholder" bindblur="weights" bindinput="weightsValue" data-key="{{ item.field }}"  type="digit" placeholder="100" value="{{  }}" />
+                    </view>
+                    %
+                </view>
+            </view>
+
+            <view class="weui-cell font-m color-back">读数照片<text class="font-lilttle status_red">必传</text></view>
+            <view class="weui-flex">
+                <view class='weui-flex distance_bottom' wx:if="{{ readingImage.length > 0 }}">
+                    <view class="img_distance" wx:for="{{ readingImage }}" wx:for-index="index" id="{{ readingImage[item.index].img }}" bindlongpress="deteleReading" wx:key="index">
+                        <view class="resident_document">
+                            <image mode="aspectFill" data-ImgIndex="{{ item.index }}" data-imgtype="{{ item.type }}" catchtap="uploadOrPreview" src="{{ readingImage[item.index].img }}"/>
+                        </view>
+                        <view>{{ item.name }}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+
+        <view class="line"></view>
+        <!-- 验房图片 -->
+        <view class="weui-cells weui-cells_after-title font-middle color-gary check-out">
+            <view class="weui-cell">
+                <view class="weui-cell__bd color-back font-m title">验房图片</view>
+            </view>
+            <view class="tips font-lilttle status_red">必填，请上传验房图片or房屋配置清单及赔偿标准(长按删除)</view>
+            <view  class="weui-form-preview__item">
+                <view class="weui-form-preview__value">
+                    <view class="img_distances" wx:for="{{ imgFiles }}" wx:for-index="index" data-ImgIndex="{{ index }}" id="{{ item }}" bindtap="previewImage" bindlongpress="deteleImage" wx:key="index">
+                        <view class="resident_documents weui-uploader__file">
+                            <image mode="weui-uploader__img" data-ImgIndex="{{ index }}" src="{{ item }}" mode="aspectFill" />
+                        </view>
+                    </view>
+                    <view class="add_pic" wx:if="{{ showAddImg }}" data-ImgIndex="{{ imgFiles.length }}" catchtap="roomPicture">+</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    
+    <view class="page__bd page__bd_spacing">
+        <view class="bottom-flex">
+            <view class="weui-flex">
+                <view class="weui-flex__item">
+                    <button class="weui-btn" type="primary" plain="true" bindtap='cancellation'>取消办理</button>
+                </view>
+                <view class="weui-flex__item">
+                    <button class="weui-btn" type="primary" bindtap='nextStep'>下一步</button>
+                </view>
+            </view>
+        </view>
+    </view>
+</view> 

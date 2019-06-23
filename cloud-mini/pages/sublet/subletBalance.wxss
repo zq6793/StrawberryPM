@@ -1,0 +1,120 @@
+.weui-cells_after-title{
+  margin-top: 20rpx;
+}
+.check-out .weui-cell{
+  height: 80rpx;
+  line-height: 80rpx;
+}
+.add-btn{
+  width: 80px;
+  height: 28px;
+  line-height: 28px;
+  padding: 0;
+}
+.preview_panel {
+  padding-bottom: 0;
+}
+.resident_center {
+  border-top: 1px #ededed solid;
+}
+.money{
+  margin-right: 16px;
+}
+.delete{
+  width: 30rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  position: absolute;
+  right: 10px;
+  margin-top: -22px;
+  background: red;
+  color: #fff;
+  text-align: center;
+  border-radius: 100%;
+}
+.weui-check__hd_in-checkbox{
+  margin-top: 0;
+  position: absolute;
+  right: 0;
+}
+.distance_bottom{
+  width: 100%;
+  height: 150rpx;
+  margin: 40rpx auto;
+}
+.tips{
+  padding-left: 30rpx;
+  margin: -10rpx 0 10rpx 0;
+}
+.add_pic{
+  width:150rpx;
+  height: 150rpx;
+  line-height: 150rpx;
+  border: 1px #ededed solid;
+  text-align: center;
+  float:left;
+}
+.img_distance{
+  font-size: 28rpx;
+  margin: 0 auto;
+  text-align: center;
+}
+.img_distances{
+  padding: 0 30rpx;
+}
+.resident_document,
+.resident_documents{
+  width:150rpx;
+  height: 150rpx;
+  text-align: center;
+  line-height: 150rpx;
+  border: 1rpx solid #d9d9d9;
+} 
+.resident_document image,
+.resident_documents image,
+.pics image{
+  width:150rpx;
+  height: 150rpx;
+  border: 1rpx solid #d9d9d9;
+}
+.pics {
+  text-align: left;
+}
+.pics image{
+  display: inline-block;
+  margin:0 20rpx;
+}
+
+.bottom-flex{
+  margin: 50rpx auto;
+  text-align: center;
+}
+.weui-btn{
+  width: 300rpx;
+  height: 88rpx;
+}
+button[type="primary"]{
+  background-color: #614789;
+  border: none;
+  color: #fff;
+}
+button[type="primary"][plain]{
+  background-color: transparent;
+  color: #614789;
+  border: 1px solid #614789;
+}
+.button-hover[type="primary"][plain]{
+  background-color:rgba(97,71,137,0.8);
+  color: #614789;
+  border: 1px solid #614789;
+}
+
+.weui-cells::before,
+.weui-cell::before{
+  border-top: none;
+}
+.weui-form-preview__hd::after,
+.weui-form-preview::after ,
+.weui-cells::after{
+  border-bottom: none;
+} 

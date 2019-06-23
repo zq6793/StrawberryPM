@@ -1,0 +1,26 @@
+.delete{
+  height: 50rpx;
+  line-height: 46rpx;
+  text-align: center;
+  font-size: 28rpx;
+}
+.service_img{
+  width: 90rpx;
+  height: 90rpx;
+  margin-right: 24rpx;
+}
+.service_img image{
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%; 
+	-webkit-border-radius:50%;
+}
+.service_obj{
+  font-size: 30rpx;
+}
+.service_panel{
+  padding-right: 30rpx;
+}
+.cell_border{
+  margin-top: 20rpx;
+}

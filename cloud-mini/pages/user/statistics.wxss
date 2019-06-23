@@ -1,0 +1,64 @@
+.weui-flex__item{
+  text-align: center;
+  margin: auto 0;
+}
+.gray{
+  color: #c8c0d6;
+}
+.font-big{
+  color: #614789;
+}
+.content{
+  padding:13rpx 0; 
+}
+.Employee{
+  margin-top:20rpx; 
+  padding: 10rpx 10rpx;
+}
+.Employee_img{
+  margin: auto auto;
+  height:100rpx;
+  width:100rpx;
+}
+.Employee_img image{
+  height:100rpx;
+  width:100rpx;
+}
+.Employee_name,
+.status{
+  text-align: left;
+}
+.performance_photo{
+  height:100rpx;
+  width:100rpx;
+  background-color:red;
+  margin: auto auto;
+}
+ .performance_data
+{
+  display: flex;
+  flex-direction: row;
+} 
+.performance{
+  padding: 10rpx 10rpx ;
+  position: relative
+}
+.performance::before{
+    content:" ";
+    position:absolute;
+    right:0;
+    top:0;
+    height:1px;
+    border-top:1rpx solid #f2f2f2;
+    color:#f2f2f2;
+    left:15px
+}
+.weui-cell__ft_in-access::after{
+  right: 25rpx;
+}
+.modification{
+  height:40rpx;
+  width:40rpx;
+  background-color:red;
+  margin-left: 90rpx
+}

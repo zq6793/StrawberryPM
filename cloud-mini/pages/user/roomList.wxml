@@ -1,0 +1,103 @@
+<view class="page ">
+	<view class="weui-cells weui-cells_after-title select_floor cell_border" wx:if="{{ showChoice }}">
+        <view class="weui-cell weui-cell_access choice_floor" catchtap='list'>
+            <view class="weui-cell__bd">选择楼号</view>
+            <view class="weui-cell__ft down_arrow"  wx:if="{{ open }}"><image src='./../../images/down_arrow.png'></image></view> 
+            <view class="weui-cell__ft  little_arrow" wx:else><image src='./../../images/left_arrow.png'></image></view>
+        </view>
+        <block wx:for="{{ buildings }}" wx:key="index">
+            <view class="weui-cell bg-white {{ open? 'display_show' : 'hide' }}">
+                <view class="weui-cell__bd" catchtap='refresh' data-buildId='{{item.id}}'>{{ item.name }}</view>
+            </view>
+        </block>
+    </view>
+    <view class="full {{open? 'display_show' : 'hide'}}"></view>
+   
+    <view class="all-satus weui-flex bg-white">
+        <view class="weui-flex__item" data-text='' bindtap="statusShow">
+            <view class='all little_loops'></view>
+            <view class="loops">全部</view>
+            <view class="{{ status === '' ? 'active' : 'hide' }}"></view>
+        </view>
+        <view class="weui-flex__item" data-text='ARREARS' bindtap="statusShow">
+            <view class='arrears little_loops'></view>
+            <view class="loops">欠费</view>
+            <view class="{{ status === 'ARREARS' ? 'active' : 'hide'}}"></view>
+        </view>
+        <view class="weui-flex__item" data-text='DUE' bindtap="statusShow">
+            <view class='expire little_loops'></view>
+            <view class="loops">到期</view>
+            <view class="{{ status === 'DUE' ? 'active' : 'hide'}}"></view>
+        </view>
+        <view class="weui-flex__item" data-text='RENT' bindtap="statusShow">
+           <view class='lease little_loops'></view>
+            <view class="loops">出租</view>
+            <view class="{{ status === 'RENT' ? 'active' : 'hide'}}"></view>
+        </view>
+        <view class="weui-flex__item" data-text='BLANK' bindtap="statusShow">
+            <view class='free little_loops'></view>
+            <view class="loops">空闲</view>
+            <view class="{{ status === 'BLANK' ? 'active' : 'hide'}}"></view>
+        </view>
+        <view class="weui-flex__item" data-text='OCCUPIED' bindtap="statusShow">
+            <view class='repair little_loops'></view>
+            <view class="loops">占用</view>
+            <view class="{{ status === 'OCCUPIED' ? 'active' : 'hide'}}"></view>
+        </view>
+    </view>
+
+    <!-- 楼层 -->
+    <view class='oneFloor'>
+        <view class="weui-cells weui-cells_after-title floor_border">
+            <block wx:for="{{ roomList }}" wx:key="*this" wx:for-item="log">
+                <view  class="weui-cell weui-cell_access floor_pad" bindtap='logToggle' data-index="{{ index }}">
+                    <view class="weui-cell__hd">{{ index }}楼</view>
+                    <view class="weui-cell__bd floor_info gray-color">
+                        <view class='small_info font-lilttle'>全部<span class="number">{{ log.count.count_total }}</span></view>
+                        <view class='small_info font-lilttle'>出租<span class="number">{{ log.count.count_rent }}</span></view>
+                        <view class='small_info font-lilttle'>欠费<span class="number">{{ log.count.count_arrears }}</span></view>
+                        <view class='small_info font-lilttle'>空闲<span class="number">{{ log.count.count_blank }}</span></view>
+                        <view class='small_info font-lilttle'>到期<span class="number">{{ log.count.count_arrears }}</span></view>
+                        <view class='small_info font-lilttle'>维修<span class="number">{{ log.count.count_repair }}</span></view>
+                    </view>
+                    <view class="weui-cell__ft down_arrow"  wx:if="{{ log.toggle === true }}"><image src='./../../images/down_arrow.png'></image></view> 
+                    <view class="weui-cell__ft little_arrow" wx:else><image src='./../../images/left_arrow.png'></image></view>
+                </view>
+
+                <view class='floors_status'> 
+                    <view class='rectangle'  wx:if="{{ log.toggle === true }}" wx:for="{{ log[0] }}" wx:key="index" wx:for-item="logs" data-id="{{ index }}">
+                        <!-- 欠费 -->
+                        <view class="loops_dis white-color arrears" wx:if="{{ logs.order.length > 0 }}"> 
+                            <view>{{ logs.number }}</view>
+                            <view>{{ logs.room_type.room_number }}室{{ logs.room_type.hall_number }}厅</view>
+                        </view>
+                
+                        <!-- 到期 -->
+                        <view class="loops_dis white-color expire" wx:elif="{{ logs.due.length > 0}}"> 
+                            <view>{{ logs.number }}</view>
+                            <view>{{ logs.room_type.room_number }}室{{ logs.room_type.hall_number }}厅</view>
+                        </view>
+                    
+                        <!-- 出租 -->
+                        <view class="loops_dis violet-color lease" wx:elif="{{ logs.status === 'RENT' }}"> 
+                            <view>{{ logs.number }}</view>
+                            <view class="text-color">1室{{ logs.room_type.hall_number }}厅</view>
+                        </view>
+                   
+                        <!-- 空闲 -->
+                        <view class="loops_dis white-color free" wx:elif="{{ logs.status === 'BLANK' }}"> 
+                            <view>{{ logs.number }}</view>
+                            <view>{{ logs.room_type.room_number }}室{{ logs.room_type.hall_number }}厅</view>
+                        </view>
+                   
+                        <!-- 维修 -->
+                        <view class="loops_dis white-color repair" wx:else> 
+                            <view>{{ logs.number }}</view>
+                            <view>{{ logs.room_type.room_number }}室{{ logs.room_type.hall_number }}厅</view>
+                        </view>
+                    </view>
+                </view>
+            </block>   
+        </view>
+    </view>
+</view>

@@ -1,0 +1,95 @@
+.pay-cont{
+	text-align: center;
+	padding:28rpx 0;
+	margin: 0;
+	border-bottom: 1px #ededed solid;
+}
+.user-imgs{
+	width: 80rpx; 
+	height: 80rpx; 
+	border-radius: 50%; 
+	-webkit-border-radius:50%;
+}
+.weui-search-bar{
+  border-bottom: none;
+}
+.add{
+  font-size:60rpx;
+  color: rgb(199, 199, 204)
+}
+.book_pad{
+  margin-top: 0;
+  background: #fff;
+  height: 88rpx;
+}
+.sequence{
+  display: flex;
+  flex-direction: row;
+  font-size:30rpx; 
+}
+.service_img{
+  width: 90rpx;
+  height: 90rpx;
+  margin-right: 20rpx;
+}
+.booker{
+  margin-right: 30rpx;
+}
+.book_remark{
+  font-size: 24rpx;
+  color: rgb(170, 170, 170)
+}
+.book_nu{
+  height: 32rpx;
+  width: 20rpx;
+}
+.choice{
+  padding-top: 10rpx;
+  padding-bottom: 65rpx;
+  padding-right: 30rpx;
+}
+.delete,
+.housing{
+  height: 50rpx;
+  line-height: 46rpx;
+  text-align: center;
+  font-size: 28rpx;
+  position: absolute;
+}
+.delete{
+  right: 30rpx;
+  bottom: 15rpx;
+}
+.housing{
+  right: 230rpx;
+  bottom: 15rpx;
+}
+.book_interval{
+  margin-top:20rpx; 
+}
+.service_img image{
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%; 
+	-webkit-border-radius:50%;
+}
+.button-hover[type="primary"][plain]{
+  background-color:transparent;
+  color:rgba(88,55 ,138,0.6);
+  border-color:rgba(88,55 ,138,0.6);
+}
+.footer{ 
+	height: 40rpx; 
+	line-height: 40rpx; 
+	position: relative; 
+	font-size: 20rpx; 
+	text-align: center;
+	color: rgba(0, 0, 0, 0.32); 
+	padding-bottom: 24rpx;
+	padding-top: 20rpx;
+}
+.footer span{ 
+	position: relative;
+	z-index:2;
+	padding:0 10px;
+}

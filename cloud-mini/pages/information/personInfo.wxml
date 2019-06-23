@@ -1,0 +1,228 @@
+<view class="page">
+    <view class="page__bd page__bd_spacing">
+        <view class="weui-flex info-header">
+            <view class="weui-flex__item check_title">
+                <view class="placeholder">填写房间信息</view>
+                <image src='./../../images/fir_arrow.png' class='fir_arrow'></image>
+            </view>
+            <view class="weui-flex__item check_title">
+                <view class="placeholder">填写个人信息</view>
+                <image src='./../../images/fir_arrow.png' class='fir_arrow'></image>
+            </view>
+            <view class="weui-flex__item">
+                <view class="placeholder font_color">生成订单</view>
+            </view>
+        </view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="bg-white title">住户一
+                <text class='font-m'>（录入信息的第一人为租房合同的乙方)</text>
+            </view>
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">用户姓名</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" placeholder="请输入住户的姓名" placeholder-class="placeholder" value="{{firstUserName}}" bindinput="householdName" />
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">联系方式</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" placeholder="请输入住户的电话" type="number" placeholder-class="placeholder" value="{{userphone}}" bindinput="householdNumber" />
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_select">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">证件类型</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <picker bindchange="documentChange" value="{{document}}" range="{{documentArray}}" range-key="{{'name'}}">
+                        <view class="weui-select weui-select_in-select-after">{{ cardTypeOne }}</view>
+                    </picker>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">证件号码</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" placeholder="请输入住户的证件号码" placeholder-class="place_holder" value="{{ idcard }}" bindinput="householdID" />
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">通讯地址</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" placeholder="请输入紧急联系人的通讯地址" placeholder-class="place_holder" bindinput="emergencyadd" value="{{emergencyaddress}}" />
+                </view>
+            </view>
+        </view>
+        <view class="page__bd page__bd_spacing weui-cells_after-title bg-white user-two">
+            <view class="title">证件照片</view>
+            <view class="weui-flex pic-cont">
+                <view class="weui-flex__item pic" catchtap='catchChooseImage' data-ImgIndex="0">
+                    <image src='{{imageSrc[0]}}' mode="aspecFill" style="width: 100%; height: 140rpx"></image>
+                </view>
+                <view class="weui-flex__item pic" catchtap='catchChooseImage' data-ImgIndex="1">
+                    <image src='{{imageSrc[1]}}' mode="aspecFill" style="width: 100%; height: 140rpx"></image>
+                </view>
+                <view class="weui-flex__item pic" catchtap='catchChooseImage' data-ImgIndex="2">
+                    <image src='{{imageSrc[2]}}' mode="aspecFill" style="width: 100%; height: 140rpx"></image>
+                </view>
+            </view>
+        </view>
+
+     <view class="weui-cells weui-cells_after-title">
+            <view class="bg-white title">住户二
+            </view>
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">用户姓名</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" placeholder="请输入住户的姓名" placeholder-class="placeholder" value="{{seconduserName}}" bindinput="householdName2" />
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">联系方式</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" placeholder="请输入住户的电话" type="number" placeholder-class="placeholder" value="{{seconduserPhone}}" bindinput="householdNumber2" />
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_select">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">证件类型</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <picker bindchange="documentChange" value="{{document}}" range="{{documentArray}}" range-key="{{'name'}}">
+                        <view class="weui-select weui-select_in-select-after">{{ cardTypeTwo }}</view>
+                    </picker>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">证件号码</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" placeholder="请输入住户的证件号码" placeholder-class="place_holder" value="{{idcards}}" bindinput="householdID2" />
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">通讯地址</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" placeholder="请输入紧急联系人的通讯地址" placeholder-class="place_holder" bindinput="emergencyadd2" value="{{emergencyaddressTwo}}" />
+                </view>
+            </view>
+        </view>
+        <view class="page__bd page__bd_spacing weui-cells_after-title bg-white user-two">
+            <view class="title">证件照片</view>
+            <view class="weui-flex pic-cont">
+                <view class="weui-flex__item pic" catchtap='catchChooseImage' data-ImgIndex="3">
+                    <image src='{{imageSrc[3]}}' mode="aspecFill" style="width: 100%; height: 140rpx"></image>
+                </view>
+                <view class="weui-flex__item pic" catchtap='catchChooseImage' data-ImgIndex="4">
+                    <image src='{{imageSrc[4]}}' mode="aspecFill" style="width: 100%; height: 140rpx"></image>
+                </view>
+                <view class="weui-flex__item pic" catchtap='catchChooseImage' data-ImgIndex="5">
+                    <image src='{{imageSrc[5]}}' mode="aspecFill" style="width: 100%; height: 140rpx"></image>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <!-- <view class="bg-white user-two title" bindtap="isShowUser">
+        <view class="text">住户二</view>
+        <view class="arrow">
+            <image src="./../../images/down_arrow.png" />
+        </view>
+    </view>
+    <view class="weui-cells weui-cells_after-title user-cont" wx:if="{{isShowU}}">
+        <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+                <view class="weui-label">用户姓名</view>
+            </view>
+            <view class="weui-cell__bd">
+                <input class="weui-input" placeholder="请输入住户的姓名" placeholder-class="placeholder" bindinput="householdName2" value="{{seconduserName}}" />
+            </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+                <view class="weui-label">联系方式</view>
+            </view>
+            <view class="weui-cell__bd">
+                <input class="weui-input" placeholder="请输入住户的电话" type="number" placeholder-class="placeholder" bindinput="householdNumber2" value="{{seconduserPhone}}" />
+
+            </view>
+        </view>
+        <view class="weui-cell weui-cell_select">
+            <view class="weui-cell__hd ">
+                <view class="weui-label">证件类型</view>
+            </view>
+            <view class="weui-cell__bd">
+                <picker bindchange="documentsChange" value="{{documents}}" range="{{documentArray}}" range-key="{{'name'}}">
+                    <view class="weui-select weui-select_in-select-after">{{ cardTypeTwo }}</view>
+                </picker>
+            </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+                <view class="weui-label">证件号码</view>
+            </view>
+            <view class="weui-cell__bd">
+                <input class="weui-input" placeholder="请输入住户的证件号码" placeholder-class="placeholder" bindinput="householdID2" value="{{idcards}}" />
+            </view>
+        </view>
+    </view> -->
+
+    <view class="weui-cells weui-cells_after-title">
+        <view class="bg-white title">紧急联系人</view>
+        <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+                <view class="weui-label">姓名</view>
+            </view>
+            <view class="weui-cell__bd">
+                <input class="weui-input" placeholder="请输入紧急联系人的姓名" placeholder-class="place_holder" bindinput="emergencyContact" value="{{emergencyName}}" />
+            </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+                <view class="weui-label">联系方式</view>
+            </view>
+            <view class="weui-cell__bd">
+                <input class="weui-input" placeholder="请输入紧急联系人的电话" placeholder-class="place_holder" bindinput="emergencyNumber" value="{{emergencyNumber}}" />
+            </view>
+        </view>
+    </view>
+
+    <!-- <view class="page__bd page__bd_spacing weui-cells_after-title bg-white user-two">
+        <view class="title">证件照片</view>
+        <view class="weui-flex pic-cont">
+            <view class="weui-flex__item pic" catchtap='catchChooseImage' data-ImgIndex="0">
+                <image src='{{imageSrc[0]}}' mode="aspecFill" style="width: 100%; height: 140rpx"></image>
+            </view>
+            <view class="weui-flex__item pic" catchtap='catchChooseImage' data-ImgIndex="1">
+                <image src='{{imageSrc[1]}}' mode="aspecFill" style="width: 100%; height: 140rpx"></image>
+            </view>
+            <view class="weui-flex__item pic" catchtap='catchChooseImage' data-ImgIndex="2">
+                <image src='{{imageSrc[2]}}' mode="aspecFill" style="width: 100%; height: 140rpx"></image>
+            </view>
+        </view>
+    </view> -->
+    <view class="page__bd page__bd_spacing bottom-flex">
+        <view class="weui-flex">
+            <view class="weui-flex__item">
+                <button class="weui-btn" type="primary" bindtap="goBack" plain="true">上一页</button>
+            </view>
+            <view class="weui-flex__item">
+                <button class="weui-btn" type="primary" bindtap='confirm'>确认</button>
+            </view>
+        </view>
+    </view>
+</view>

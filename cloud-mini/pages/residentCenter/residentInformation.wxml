@@ -1,0 +1,252 @@
+<view class="page">
+   <view class="page__bd">
+        <view class="weui-form-preview preview_panel cell_border">
+
+            <view class="weui-form-preview__hd resident_center">
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label resident_color resident_title">住户信息</view>
+                </view>
+            </view>
+
+            <view class="weui-form-preview__bd font-m">
+                <view class="weui-form-preview__item min_size">
+                    <view class="weui-form-preview__label min_width">姓名</view>
+                    <view class="weui-form-preview__value">{{ userInfo.name }}</view>
+                </view>
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label min_width">联系方式</view>
+                    <view class="weui-form-preview__value color-green" data-phone='{{ userInfo.phone }}' catchtap="calling">{{ userInfo.phone }}</view>
+                </view>
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label min_width">证件类型</view>
+                    <view class="weui-form-preview__value"> {{ cardType }} </view>
+                </view>
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label min_width">证件号码</view>
+                    <view class="weui-form-preview__value">{{userInfo.card_number}}</view>
+                </view>
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label min_width">合同类型</view>
+                    <view class="weui-form-preview__value" wx:if="{{userInfo.contract[0].type === 'FDD'}}">法大大</view>
+                    <view class="weui-form-preview__value" wx:else="{{userInfo.contract[0].type === 'NORMAL'}}">纸质合同</view>
+                </view>
+            </view>
+
+            <view class="weui-form-preview__bd resident_line font-m" wx:if="{{ userInfo.name_two && userInfo.card_type_two }}">
+                <view class="weui-form-preview__item min_size">
+                    <view class="weui-form-preview__label min_width">姓名</view>
+                    <view class="weui-form-preview__value">{{ userInfo.name_two }}</view>
+                </view>
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label min_width">联系方式</view>
+                    <view class="weui-form-preview__value">{{ userInfo.phone_two }}</view>
+                </view>
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label min_width">证件类型</view>
+                    <view class="weui-form-preview__value">{{ mateCardType }}</view>
+                </view>
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label min_width">证件号码</view>
+                    <view class="weui-form-preview__value">{{ userInfo.card_number_two }}</view>
+                </view>
+            </view>
+
+            <view class="weui-form-preview__bd resident_line">
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label resident_color resident_title resident_distance">身份证照片</view>
+                </view>
+                <view class='resident_documents weui-flex distance_bottom'>
+                    <view class="img_distance" wx:for="{{ imageList }}" wx:key="index"><view class="resident_document">
+                        <image mode="aspectFill" data-url="{{ item }}" bindtap="showIdCardImg" src='{{ item }}'></image></view>
+                    </view>
+                </view>
+            </view>
+
+            <view class="weui-form-preview__bd resident_line">
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label resident_color resident_title">合同信息</view>
+                </view>
+
+                <view class="weui-form-preview__bd parts font-m" wx:if="{{ userInfo.reserve_contract.length > 0 }}">
+                    <view class="weui-form-preview__item min_size">
+                        <view class="weui-form-preview__label min_width">预订</view>
+                        <button class="weui-btn contract" type="primary" plain="true" data-type="book" bindtap="viewContract">查看合同</button>
+                        <view class="weui-form-preview__value_in-hd" wx:if='{{ isContractBook }}'>
+                            <button class="weui-btn view-contract contract" type="primary" data-type="book" plain="true" bindtap="signingContract">签署合同</button>
+                        </view>
+                    </view>
+                </view>
+                <view class="weui-form-preview__bd parts font-m" wx:if="{{ userInfo.deposit_contract.length > 0 }}">
+                    <view class="weui-form-preview__item min_size">
+                        <view class="weui-form-preview__label min_width">补充协议</view>
+                        <button class="weui-btn contract" type="primary" plain="true" data-type="predeposit" bindtap="viewContract">查看合同</button>
+                        <view class="weui-form-preview__value_in-hd" wx:if='{{ isDepositContract }}'>
+                            <button class="weui-btn view-contract contract" type="primary" data-type="predeposit" plain="true" bindtap="signingContract">签署合同</button>
+                        </view>
+                    </view>
+                </view>
+                <view class="weui-form-preview__bd parts font-m" wx:if="{{ userInfo.contract.length > 0 }}">
+                    <view class="weui-form-preview__item min_size">
+                        <view class="weui-form-preview__label min_width">入住</view>
+                        <button class="weui-btn contract" type="primary" plain="true" data-type="checkin" bindtap="viewContract">查看合同</button>
+                        <view class="weui-form-preview__value_in-hd" wx:if='{{ isCheckContract }}'>
+                            <button class="weui-btn view-contract contract" type="primary" data-type="checkin" plain="true" bindtap="signingContract">签署合同</button>
+                        </view>
+                    </view>
+                </view>
+            </view>
+
+            <view class="weui-form-preview__bd resident_line">
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label resident_color resident_title">紧急联系人</view>
+                </view>
+
+                <view class="weui-form-preview__bd parts font-m">
+                    <view class="weui-form-preview__item min_size">
+                        <view class="weui-form-preview__label min_width">姓名</view>
+                        <view class="weui-form-preview__value">{{userInfo.alternative}}</view>
+                    </view>
+                    <view class="weui-form-preview__item">
+                        <view class="weui-form-preview__label min_width">联系方式</view>
+                        <view class="weui-form-preview__value">{{userInfo.alter_phone}}</view>
+                    </view>
+                    <view class="weui-form-preview__item">
+                        <view class="weui-form-preview__label min_width">通讯地址</view>
+                        <view class="weui-form-preview__value">{{userInfo.address}}</view>
+                    </view>
+                </view>
+            </view>
+
+            <view class="weui-form-preview__bd resident_line">
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label resident_color resident_title">房间信息</view>
+                </view>
+                <view class="weui-form-preview__bd parts font-m">
+                    <view class="weui-form-preview__item min_size">
+                        <view class="weui-form-preview__label min_width">姓名</view>
+                        <view class="weui-form-preview__value">{{ userInfo.name }}</view>
+                    </view>
+                    <view class="weui-form-preview__item">
+                        <view class="weui-form-preview__label min_width">入住人数</view>
+                        <view class="weui-form-preview__value">{{ userInfo.people_count }}人</view>
+                    </view>
+                    <view class="weui-form-preview__item">
+                        <view class="weui-form-preview__label min_width">房租</view>
+                        <view class="weui-form-preview__value">{{ userInfo.real_rent_money }}元</view>
+                    </view>
+                    <view class="weui-form-preview__item">
+                        <view class="weui-form-preview__label min_width">物业费</view>
+                        <view class="weui-form-preview__value">{{ userInfo.real_property_costs }}元</view>
+                    </view>
+                    <view class="weui-form-preview__item">
+                        <view class="weui-form-preview__label min_width">住宿押金</view>
+                        <view class="weui-form-preview__value">{{userInfo.deposit_rent}}元</view>
+                    </view>
+                    <view class="weui-form-preview__item">
+                        <view class="weui-form-preview__label min_width">其他押金</view>
+                        <view class="weui-form-preview__value">{{userInfo.deposit_other }}元</view>
+                    </view>
+                    <view class="weui-form-preview__item">
+                        <view class="weui-form-preview__label min_width">房间状态</view>
+                        <view class="weui-form-preview__value">{{ status }}</view>
+                    </view>
+                    <view class="weui-form-preview__item">
+                        <view class="weui-form-preview__label min_width">合同日期</view>
+                        <view class="weui-form-preview__value">{{userInfo.begin_time}}~{{userInfo.end_time}}</view>
+                    </view>
+                </view>
+            </view>
+
+            <view class="weui-form-preview__bd resident_line">
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label resident_color resident_title">同住人信息</view>
+                    <button class="weui-btn contract color-purple" bindtap="info">查看详情> </button>
+                </view>
+                <view class="weui-form-preview__bd parts font-m">
+                    <block>
+                        <view class="weui-form-preview__item min_size">
+                            <view class="weui-form-preview__label min_width">姓名:</view>
+                            <view class="weui-form-preview__value">小强</view>
+                        </view>
+                        <view class="weui-form-preview__item min_size">
+                            <view class="weui-form-preview__label min_width">联系方式:</view>
+                            <view class="weui-form-preview__value">121212121</view>
+                        </view>
+                    </block>
+                </view>
+                <view class="weui-form-preview__bd parts font-m">
+                    <block>
+                        <view class="weui-form-preview__item min_size">
+                            <view class="weui-form-preview__label min_width">姓名:</view>
+                            <view class="weui-form-preview__value">小强</view>
+                        </view>
+                        <view class="weui-form-preview__item min_size">
+                            <view class="weui-form-preview__label min_width">联系方式:</view>
+                            <view class="weui-form-preview__value">121212121</view>
+                        </view>
+                    </block>
+                </view>
+                <!-- <view class="weui-form-preview__bd parts font-m">
+                    <block  wx:for="{{ fellowResidents }}" wx:key="index">
+                        <view class="weui-form-preview__item min_size">
+                            <view class="weui-form-preview__label min_width">姓名:</view>
+                            <view class="weui-form-preview__value">{{ item.name }}</view>
+                        </view>
+                        <view class="weui-form-preview__item min_size">
+                            <view class="weui-form-preview__label min_width">联系方式:</view>
+                            <view class="weui-form-preview__value">{{ item.phone }}</view>
+                        </view>
+                    </block>
+                </view> -->
+            </view>
+
+            <view class="weui-form-preview__bd resident_line" wx:if="{{ preDeposit > 0 }}">
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label resident_color resident_title">预存金</view>
+                </view>
+                <view class="weui-form-preview__bd parts font-m">
+                    <view class="weui-form-preview__item min_size">
+                        <view class="weui-form-preview__label min_width">余额：{{ preDeposit }}元</view>
+                        <button class="weui-btn contract other-deposit" bindtap="conversionOtherDeposit">转为其他押金</button>
+                    </view>
+                </view>
+            </view>
+
+            <!-- <view class="weui-form-preview__bd resident_line">
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label resident_color resident_title">房间密码</view>
+                </view>
+                <view class="weui-form-preview__bd parts font-m">
+                    <view class="weui-form-preview__item min_size">
+                        <view class="weui-form-preview__label min_width">初始密码<text class="password">{{ password }}</text></view>
+                        <button class="weui-btn contract color-purple" type="primary" plain="true" bindtap="resetPassword">重置密码</button>
+                    </view>
+                </view>
+            </view> -->
+
+            <view class="weui-form-preview__bd resident_line">
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label resident_color resident_title">房间设备</view>
+                </view>
+                <view class='resident_equipment weui-flex'>
+                    <view class="weui-flex__item">
+                       <view class="equipment_dis"><image src='./../../images/power.png' class='big_img'></image></view>
+                       <view class='font-lilttle'>电源</view>
+                    </view>
+                    <view class="weui-flex__item">
+                       <view class="equipment_dis"><image src='./../../images/water.png' class='little_img'></image></view>
+                       <view class='font-lilttle'>水源</view>
+                    </view>
+                    <view class="weui-flex__item">
+                       <view class="equipment_dis"><image src='./../../images/lock.png' class='little_img'></image></view>
+                       <view class='font-lilttle'>门锁</view>
+                    </view>
+                    <view class="weui-flex__item">
+                       <view class="equipment_dis"><image src='./../../images/alarm.png' class='middle_img'></image></view>
+                       <view class='font-lilttle'>警报器</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+   </view>
+</view>

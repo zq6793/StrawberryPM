@@ -1,0 +1,52 @@
+<view class="page">
+    <!-- 缴费信息录入 -->
+    <view class="weui-cells weui-cells_after-title font-lilttle pay-list">
+        <view class="weui-cells__title">添加费用</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input pay-li">
+                <view class="weui-cell__bd">费用金额</view>
+                <view class="weui-cell__ft">
+                    <input class="weui-input" placeholder="请输入支付金额" type="digit" value="{{ money }}" bindinput="paymentAmout" />
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input pay-li">
+                <view class="weui-cell__bd">费用项</view>
+                <view class="weui-cell__ft">
+                    <picker bindchange="costType" value="{{ costTypeIndex }}" range="{{ costType }}" range-key="{{'countryName'}}">
+                        <view class="weui-select">
+                            {{ costType[costTypeIndex].countryName }}
+                        </view>
+                    </picker>
+                </view>
+            </view>
+            <view class="weui-cell pay-lI">
+                <view class="weui-cell__bd">开始时间</view>
+                <view class="weui-cell__ft">
+                    <picker mode="date" value="{{ begin_time_e }}" bindchange="bindtbegintimeChange" start="" end="{{ endTime }}">
+                        <view class="weui-select weui-select_in-select-after">{{ begin_time_e }}</view>
+                    </picker>
+                </view>
+            </view>
+            <view class="weui-cell pay-lI">
+                <view class="weui-cell__bd">结束时间</view>
+                <view class="weui-cell__ft">
+                    <picker mode="date" value="{{ end_time_e }}" bindchange="bindendtimeChange" start="" end="{{ endTime }}">
+                        <view class="weui-select weui-select_in-select-after">{{ end_time_e }}</view>
+                    </picker>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input pay-li">
+                <view class="weui-cell__bd">备注</view>
+                <view class="weui-cell__ft">
+                    <input class="weui-input" placeholder="请填写备注" value="{{ remarks }}" bindinput="remarks" />
+                </view>
+            </view>
+        </view>
+        <view class="page__bd page__bd_spacing bottom-flex">
+            <view class="weui-flex">
+                <view class="weui-flex__item"><button class="weui-btn" type="primary" bindtap="goBack" plain="true">取消</button></view>
+                <view class="weui-flex__item"><button class="weui-btn" type="primary" bindtap='confirm'>确定</button></view>
+            </view>
+        </view>
+    </view>
+</view>

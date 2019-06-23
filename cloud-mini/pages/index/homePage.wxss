@@ -1,0 +1,136 @@
+.honme-page{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    text-align: center;
+    top: 0;
+    left: 0;
+    color: rgb(88,55,138);
+    background-color: #fff;
+    padding-top: 40%;
+    font-size: 14px;
+}
+.loading image{
+    width: 200rpx;
+    height: 158rpx;
+    animation: home_loading 1.5s linear infinite;
+    margin-bottom: 30rpx;
+}
+@-webkit-keyframes home_loading {
+  0% { -webkit-transform: rotate(0deg) }
+  100% { -webkit-transform: rotate(360deg) }
+}
+@keyframes home_loading {
+  0% { transform: rotate(0deg) }
+  100% { transform: rotate(360deg) }
+}
+
+.hint-page{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    text-align: center;
+    top: 0;
+    left: 0;
+    color: rgb(88,55,138);
+    background-color: #fff;
+    padding-top: 28%;
+    font-size: 14px;
+}
+.cont{
+    width: 60%;
+    margin: 0 auto;
+}
+.hint-page image{
+    width: 476rpx;
+    height: 306rpx;
+    margin-bottom: 30rpx;
+}
+.title{
+    font-size: 36rpx;
+}
+.font{
+    font-size: 28rpx;
+    line-height: 46rpx;
+}
+.mess{
+    margin: 40rpx 0;
+}
+.come_me{
+    width: 466rpx;
+    height: 94rpx;
+    line-height: 94rpx;
+    text-align: center;
+    color: #fff;
+    background: rgb(88,55,138);
+    border-radius: 10px;
+    display: block;
+}
+.hide{
+    display: none;
+}
+.show{
+    display: block;
+}
+.authorize{
+    text-align: center;
+    color: #fff;
+}
+.authorize-bg{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+.authorize-bg image{
+    width: 100%;
+    height: 100%;
+}
+.text{
+    width: 70%;
+    position: fixed;
+    top: 10%;
+    left: 15%;
+    margin-bottom: 50rpx;
+    font-size: 40rpx;
+}
+.text image{
+    width: 100%;
+    height: 40px;
+}
+.btn{
+    width: 40%;
+    position: fixed;
+    left: 30%;
+    top: 30%;
+    background-color:rgba(0,0,0,0);
+    color: #fff;
+    padding: 0;
+    line-height: 0;
+}
+button::after{
+    border: none;
+}
+.btn image{
+    width: 300rpx;
+    height: 300rpx;
+}
+.btn .btn-text{
+    width: 100%;
+    position: absolute;
+    margin-top: -208rpx;
+}
+.btn .btn-text view{
+    line-height: 20px;
+}
+.footer{
+    width: 80%;
+    position: fixed;
+    bottom: 5%;
+    left: 10%;
+}
+.footer image{
+    width: 100%;
+    height: 40px;
+}

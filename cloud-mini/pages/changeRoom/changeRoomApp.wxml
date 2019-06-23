@@ -1,0 +1,84 @@
+<view class="page">
+    <view class="page__bd">
+        <view class="weui-cells weui-cells_after-title font-middle color-gary old-room">
+            <view class="weui-cell">
+                <view class="weui-cell__bd color-back font-m title">原房间信息</view>
+            </view>
+
+            <view class="weui-cell">
+                <view class="weui-cell__bd">门店名称</view>
+                <view class="weui-cell__ft">{{ store_name }}</view>
+            </view>
+
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">房间号</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input color-back" auto-focus placeholder="请输入房间号" name="roomNumber" value="{{ roomNumber }}" bindinput="roomNumberInput"  bindblur="room" style="text-align: right" />
+                </view>
+            </view>
+
+            <view class="weui-cell">
+                <view class="weui-cell__bd">租户姓名</view>
+                <view class="weui-cell__ft">{{ userInfo.resident.name }}</view>
+            </view>
+
+            <view class="weui-cell">
+                <view class="weui-cell__bd">联系方式</view>
+                <view class="weui-cell__ft">{{ userInfo.resident.phone }}</view>
+            </view>
+
+            <view class="weui-cell">
+                <view class="weui-cell__bd">住宿押金</view>
+                <view class="weui-cell__ft">{{ userInfo.resident.deposit_money }}元</view>
+            </view>
+
+            <view class="weui-cell">
+                <view class="weui-cell__bd">其他押金</view>
+                <view class="weui-cell__ft">{{ userInfo.resident.tmp_deposit }}元</view>
+            </view>
+
+            <view class="weui-cell">
+                <view class="weui-cell__bd">合同日期</view>
+                <view class="weui-cell__ft">{{ userInfo.resident.begin_time }}~{{ userInfo.resident.end_time }}</view>
+            </view>
+
+            <view class="weui-cell" >
+                <view class="weui-cell__bd">换房理由</view>
+                <view class="weui-cell__ft">
+                    <input class="weui-input" placeholder="请输入换房理由" value="{{ reason }}" bindinput="reason" />
+                </view>
+            </view>
+        </view>
+
+        <view class="line"></view>
+        <view class="weui-cell">
+            <view class="weui-cell__bd color-back font-m title">换租信息</view>
+        </view>
+
+        <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+                <view class="weui-label">房间号</view>
+            </view>
+            <view class="weui-cell__bd">
+                <input class="weui-input color-back" auto-focus placeholder="请输入房间号" name="roomNumber" value="{{ roomNumber }}" bindinput="roomNumberInput"  bindblur="room" style="text-align: right" />
+            </view>
+        </view>
+
+        
+    </view>
+    
+    <view class="page__bd page__bd_spacing">
+        <view class="bottom-flex">
+            <view class="weui-flex">
+                <view class="weui-flex__item">
+                    <button class="weui-btn" type="primary" plain="true" bindtap='cancellation'>取消办理</button>
+                </view>
+                <view class="weui-flex__item">
+                    <button class="weui-btn" type="primary" bindtap='nextStep'>下一步</button>
+                </view>
+            </view>
+        </view>
+    </view>
+</view> 

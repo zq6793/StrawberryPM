@@ -1,0 +1,18 @@
+@import "../residentCenter/residentInformation.wxss";
+.button-hover[type="primary"][plain]{
+  background-color:transparent;
+  border: 1px solid #1aad19;
+  color:rgba(37,182 ,61,0.6);
+  border-color:rgba(37,182 ,61,0.6);
+}
+button[type="primary"][plain]{
+  background-color:rgba(37,182,61);
+  border: 1px solid #1aad19;
+  color:#1aad19;
+}
+.weui-form-preview::after{
+  border-bottom: none;
+}
+.weui-form-preview::before{
+  border-top: none;
+}

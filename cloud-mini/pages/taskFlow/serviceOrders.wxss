@@ -1,0 +1,54 @@
+@import "../residentCenter/residentInformation.wxss";
+.weui-form-preview__bd{
+  margin: 20rpx 0;
+}
+.weui-form-preview__bd{
+  border-bottom: 1px #ededed solid;
+}
+.service_dis{
+  padding: 10px 0;
+}
+.img_distance{
+  margin: -10rpx auto;
+}
+.add_pic{
+  width:150rpx;
+  height: 150rpx;
+  line-height: 150rpx;
+  border: 1px #ededed solid;
+  text-align: center;
+  float:left;
+}
+.resident_document{
+  display: inline-block;
+  margin: 0 5rpx;
+} 
+.resident_document image{
+  width:150rpx;
+  height: 150rpx;
+}
+.weui-uploader__file-content{
+
+}
+
+.all_border::after,
+.all_border::before{
+  border: none;
+}
+.bottom-flex{
+  margin: 50rpx auto;
+  text-align: center;
+}
+.weui-btn{
+  width: 300rpx;
+  height: 88rpx;
+}
+.weui-input{
+  height: 60rpx!important;
+  line-height: 60rpx!important;
+}
+button[type="primary"]{
+  background-color: #614789;
+  border: none;
+  color: #fff;
+}

@@ -1,0 +1,105 @@
+<view class="page__hd page__bd_spacing">
+    <navigator class="weui-cell weui-cell_access book_pad" hover-class="none" url="/pages/residentCenter/addcoResident?id={{resident_id}}">
+        <view class="weui-cell__bd">新增同住人</view>
+        <view class="weui-cell__ft">
+            <view class='add'>＋</view>
+        </view>
+    </navigator>
+
+    <view class="blank" wx:if="{{ list.length === 0 }}">
+        <view class="font-m color-gary remind">暂无订单信息</view>
+        <image src="./../../images/boy.png"></image>
+    </view>
+
+    <!-- <view class="weui-form-preview preview_panel" wx:for="{{ list }}" wx:key="index"> -->
+    <view class="weui-form-preview preview_panel">
+        <view class="weui-form-preview__hd resident_center">
+            <view class="weui-form-preview__item">
+                <view class="weui-form-preview__label color-back font-m">同住人信息</view>
+                <button class="weui-btn contract" type="primary" bindtap='delete' data-id="{{ item.id }}">删除</button>
+            </view>
+        </view>
+
+        <view class="weui-form-preview__bd font-m">
+            <view class="weui-form-preview__item min_size">
+                <view class="weui-form-preview__label min_width">姓名</view>
+                <!-- <view class="weui-form-preview__value">{{ item.name }}</view> -->
+                <view class="weui-form-preview__value">小乔</view>
+            </view>
+            <view class="weui-form-preview__item">
+                <view class="weui-form-preview__label min_width">联系方式</view>
+                <!-- <view class="weui-form-preview__value color-green" data-phone='{{ item.phone }}' catchtap="calling">{{ item.phone }}</view> -->
+                <view class="weui-form-preview__value color-green" data-phone='{{ item.phone }}' catchtap="calling">18710870081</view>
+            </view>
+            <view class="weui-form-preview__item">
+                <view class="weui-form-preview__label min_width">证件类型</view>
+                <!-- <view class="weui-form-preview__value"> {{ item.card_type }} </view> -->
+                <view class="weui-form-preview__value"> 身份证 </view>
+            </view>
+            <view class="weui-form-preview__item">
+                <view class="weui-form-preview__label min_width">证件号码</view>
+                <!-- <view class="weui-form-preview__value">{{ item.card_number }}</view> -->
+                <view class="weui-form-preview__value">610115119745651454</view>
+            </view>
+            <view class="weui-form-preview__item">
+                <view class="weui-form-preview__label min_width">通讯地址</view>
+                <!-- <view class="weui-form-preview__value">{{ item.card_number }}</view> -->
+                <view class="weui-form-preview__value">99999</view>
+            </view>
+            <view class="weui-form-preview__item">
+                <view class="weui-form-preview__label min_width">状态</view>
+                <!-- <view class="weui-form-preview__value">{{ item.status }}</view> -->
+                <view class="weui-form-preview__value">未扫码</view>
+            </view>
+            <view class="weui-form-preview__item" wx:if="{{ item.customer_id === 0 }}">
+                <view class="weui-form-preview__label min_width"></view>
+                <view class="weui-form-preview__value color-green" bindtap="code" data-id="{{ item.id }}">点击查看二维码</view>
+            </view>
+        </view>
+
+        <view class="weui-form-preview__bd resident_line">
+            <view class="weui-form-preview__item">
+                <view class="weui-form-preview__label resident_color resident_title resident_distance">身份证照片</view>
+            </view>
+             <view class='resident_documents weui-flex distance_bottom'>
+                <view class="img_distance">
+                    <view class="resident_document">
+                        <image mode="aspectFill" data-url="{{ item }}" bindtap="showIdCardImg" src='./../../images/boy.png'></image>
+                    </view>
+                </view>
+                <view class="img_distance">
+                    <view class="resident_document">
+                        <image mode="aspectFill" data-url="{{ item }}" bindtap="showIdCardImg" src='./../../images/boy.png'></image>
+                    </view>
+                </view>
+                <view class="img_distance">
+                    <view class="resident_document">
+                        <image mode="aspectFill" data-url="{{ item }}" bindtap="showIdCardImg" src='./../../images/boy.png'></image>
+                    </view>
+                </view>
+            </view>
+            <!-- <view class='resident_documents weui-flex distance_bottom'>
+                <view class="img_distance" wx:for="{{ imageList }}" wx:key="index">
+                    <view class="resident_document">
+                        <image mode="aspectFill" data-url="{{ item }}" bindtap="showIdCardImg" src='{{ item }}'></image>
+                    </view>
+                </view>
+            </view> -->
+        </view>
+    </view>
+
+    <view class="bottom-flex">
+        <view class="weui-flex">
+            <view class="weui-flex__item">
+                <button class="weui-btn" type="primary" plain="true" bindtap='cancellation'>返回</button>
+            </view>
+        </view>
+    </view>
+
+    <view class='code' wx:if="{{ isShowCode }}">
+        <view class="code-cont bg-white">
+            <image class="code-img" src="{{ codeUrl }}"></image>
+            <text class="scan-code-end" bindtap='colseCode'>确认订单并扫码关注</text>
+        </view>
+    </view>
+</view>

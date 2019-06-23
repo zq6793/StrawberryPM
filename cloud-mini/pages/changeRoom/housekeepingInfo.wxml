@@ -1,0 +1,137 @@
+<view class="page">
+<view class="page__bd" wx:if="{{ isShow }}">
+<!-- 确认换房及办理入住 -->
+<view class="bg-white cont">
+<view class="title">房间信息</view>
+<view class="weui-cell weui-cell_access">
+    <view class="weui-cell__bd">
+        <view>入住房间</view>
+    </view>
+    <view class="weui-cell__ft">{{ newroomInfo.roomNumber }}</view>
+</view>
+<view class="weui-cell weui-cell_access">
+    <view class="weui-cell__bd">
+        <view>换房时间</view>
+    </view>
+    <view class="weui-cell__ft">{{ newroomInfo.begin_time }}</view>
+</view>
+<view class="weui-cell weui-cell_access">
+    <view class="weui-cell__bd">
+        <view>住宿服务费</view>
+    </view>
+    <view class="weui-cell__ft">{{ newroomInfo.rent_price }}元/月</view>
+</view>
+<view class="weui-cell weui-cell_access">
+    <view class="weui-cell__bd">
+        <view>物业服务费</view>
+    </view>
+    <view class="weui-cell__ft">{{ newroomInfo.property_price }}元/月</view>
+</view>
+<!-- <view class="weui-cell weui-cell_access">
+    <view class="weui-cell__bd">
+        <view>合同时长</view>
+    </view>
+    <view class="weui-cell__ft">{{ newroomInfo.pay_frequency }}个月</view>
+</view> -->
+<view class="weui-cell weui-cell_access">
+    <view class="weui-cell__bd">
+        <view>新房间住宿押金</view>
+    </view>
+    <view class="weui-cell__ft">{{ newroomInfo.deposit_money }}元</view>
+</view>
+<view class="weui-cell weui-cell_access">
+    <view class="weui-cell__bd">
+        <view>新房间其它押金</view>
+    </view>
+    <view class="weui-cell__ft">{{ newroomInfo.tmp_deposit }}元</view>
+</view>
+</view>
+<view class="weui-form-preview preview_panel font-m">
+<view class="weui-cells weui-cells_after-title font-middle color-gary">
+    <view class="weui-cell">
+        <view class="weui-cell__bd color-back font-m">原房间已交</view>
+    </view>
+    <view class="weui-form-preview__bd">
+        <view class="weui-form-preview__item min_size font-m" wx:for="{{ spend_order_old }}" wx:key="index">
+            <view class="weui-form-preview__label min_width">{{ item.type }}</view>
+            <view class="weui-form-preview__label min_width">({{ item.year +'/'+ item.month }})</view>
+            <view class="weui-form-preview__value">{{ item.money +'元'}}</view>
+        </view>
+    </view>
+</view>
+<view class="weui-form-preview__bd">
+    <view class="weui-form-preview__hd resident_center"> 
+        <view class="weui-form-preview__item">
+            <view class="weui-form-preview__label resident_color resident_title">合计</view>
+            <view class="weui-form-preview__value font-m status_red">{{ spend_old_money }}元</view>
+        </view>
+    </view>
+</view>
+<view class="line"></view>
+<view class="weui-cells weui-cells_after-title font-middle color-gary">
+<view class="weui-cell">
+    <view class="weui-cell__bd color-back font-m">原房间应收</view>
+    <view class="weui-cell__ft" wx:if="{{ isShowBtn }}">
+        <button class="add-btn font-lilttle" type="primary" plain="true" catchtap='choosePay'>添加费用</button>
+    </view>
+</view>
+<view class="weui-form-preview__bd">
+
+    <view class="weui-form-preview__item min_size font-m" wx:for="{{ charge_order_old }}" wx:key="index">
+        <view class="weui-form-preview__label min_width">{{ item.type }}</view>
+        <view class="weui-form-preview__label min_width">({{ item.year +'/'+ item.month }})</view>
+        <view class="weui-form-preview__value">{{ item.money +'元'}}</view>
+    </view>
+<view class="weui-form-preview__item min_size font-m" wx:for="{{ add_order_fee }}" wx:key="index">
+    <view class="weui-form-preview__label min_width">{{ item.types }}</view>
+    <view class="weui-form-preview__label min_width">
+    {{ item.begin_time_e }}--{{ item.end_time_e }}
+    </view>
+    <view class="weui-form-preview__value money">{{ item.money +'元'}}</view>
+    <view class="delete" data-index="{{ index }}" data-money="{{ item.money }}" bindtap="deteleOrder">一</view>
+</view>
+</view>
+</view>
+<view class="weui-form-preview__bd">
+    <view class="weui-form-preview__hd resident_center"> 
+        <view class="weui-form-preview__item">
+            <view class="weui-form-preview__label resident_color resident_title">合计</view>
+            <view class="weui-form-preview__value font-m status_red">{{ charge_old_money }}元</view>
+        </view>
+    </view>
+</view>
+<view class="weui-cells weui-cells_after-title font-middle color-gary">
+    <view class="weui-cell">
+        <view class="weui-cell__bd color-back font-m">新房间应收</view>
+    </view>
+    <view class="weui-form-preview__bd">
+        <view class="weui-form-preview__item min_size font-m" wx:for="{{ charge_order_new }}" wx:key="index">
+            <view class="weui-form-preview__label min_width">{{ item.type }}</view>
+            <view class="weui-form-preview__label min_width">({{ item.year +'/'+ item.month }})</view>
+            <view class="weui-form-preview__value">{{ item.money +'元'}}</view>
+        </view>
+    </view>
+</view>
+<view class="weui-form-preview__bd">
+    <view class="weui-form-preview__hd resident_center"> 
+        <view class="weui-form-preview__item">
+            <view class="weui-form-preview__label resident_color resident_title">合计</view>
+            <view class="weui-form-preview__value font-m status_red">{{ charge_new_money }}元</view>
+        </view>
+    </view>
+</view>
+</view>   
+<!-- 按钮 -->
+<view class="page__bd page__bd_spacing bottom-flex" wx:if="{{ isShowBtn }}">
+    <view class="weui-flex">
+        <view class="weui-flex__item">
+            <button class="weui-btn" type="primary" plain="true" bindtap='goback'>取消办理</button>
+        </view>
+        <view class="weui-flex__item">
+            <button class="weui-btn" type="primary" bindtap='checkChangroom'>确认办理</button>
+        </view>
+    </view>
+</view>
+</view>
+</view>
+

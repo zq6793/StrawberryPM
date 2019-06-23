@@ -1,0 +1,111 @@
+<view class="page">
+    <view class="page__bd">
+        <view class="weui-form-preview preview_panel all_border">
+            <view class="weui-form-preview__bd">
+                <view class="weui-form-preview__hd resident_center service_dis">
+                    <view class="weui-form-preview__item">
+                        <view class="weui-form-preview__label resident_color resident_title">服务房间信息</view>
+                    </view>
+                </view>
+
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label font-m min_width color-back">优成店</view>
+                </view>
+
+                <view class="weui-form-preview__item min_size">
+                    <view class="weui-form-preview__label min_width font-m">服务房号</view>
+                    <view class="weui-form-preview__value font-m">{{ detail.roomunion.number }}</view>
+                </view>
+
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label min_width font-m">预约时间</view>
+                    <view class="weui-form-preview__value font-m">{{ detail.time }}</view>
+                </view>
+            </view>
+
+            <view class="weui-form-preview__bd">
+                <view class="weui-form-preview__hd resident_center service_dis">
+                    <view class="weui-form-preview__item">
+                        <view class="weui-form-preview__label resident_color resident_title">服务客人信息</view>
+                    </view>
+                </view>
+
+                <view class="weui-form-preview__item min_size">
+                    <view class="weui-form-preview__label min_width font-m">姓名</view>
+                    <view class="weui-form-preview__value font-m">{{ detail.name }}</view>
+                </view>
+
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label min_width font-m">联系方式</view>
+                    <view class="weui-form-preview__value font-m" data-phone='{{ detail.phone}}' catchtap="calling">{{ detail.phone }}</view>
+                </view>
+
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label min_width font-m">服务类别</view>
+                    <view class="weui-form-preview__value font-m" wx:if="{{ detail.type == 'MOVE' }}">搬家</view>
+                    <view class="weui-form-preview__value font-m" wx:if="{{ detail.type == 'REPAIR' }}">维修</view>
+                    <view class="weui-form-preview__value font-m" wx:if="{{ detail.type == 'CLEAN' }}">清洁</view>
+                </view>
+
+                <view wx:if="{{ detail.type == 'REPAIR' }}" class="weui-form-preview__item">
+                    <view class="weui-form-preview__label min_width font-m">维修类别</view>
+                    <view class="weui-form-preview__value font-m">{{ detail.addr_from }} - {{ detail.addr_to }}</view>
+                </view>
+
+                <view  class="weui-form-preview__item">
+                    <view class="weui-form-preview__label font-m min_width">
+                        <view>上传图片</view>
+                        <view class="status_red font-lilttle">最多可上传3张</view>
+                    </view>
+                    <view class="weui-form-preview__value">
+                        <!-- <view class="weui-uploader__input" wx:if="{{ imgFiles.length > 3 }}" bindtap="chooseImage"></view> -->
+                        <view class="add_pic" wx:if="{{ showAddImg }}" bindtap="chooseImage">+</view>
+                        <view class="img_distance">
+                            <view class="resident_document weui-uploader__file weui-uploader__file_status" wx:for="{{ imgFiles }}" bindtap="previewImage" id="{{ item }}" wx:key="index">
+                                <image mode="weui-uploader__img pic-img" src="{{ item }}" />
+                                <!-- <view class="weui-uploader__file-content">×</view> -->
+                            </view>
+                        </view>
+                    </view>
+                </view>
+
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label min_width font-m">备注信息</view>
+                    <view class="weui-form-preview__value font-m">{{ detail.remark ? detail.remark : '无' }}</view>
+                </view>
+            </view>
+
+            <view class="weui-form-preview__bd">
+                <view class="weui-form-preview__hd resident_center service_dis">
+                    <view class="weui-form-preview__item">
+                        <view class="weui-form-preview__label resident_color resident_title">费用结算</view>
+                    </view>
+                </view>
+
+                <view class="weui-form-preview__item min_size">
+                    <view class="weui-form-preview__item min_size">
+                        <view class="weui-form-preview__label min_width font-m">服务费用</view>
+                        <view class="weui-form-preview__value font-m"><input class="weui-input" placeholder="请输入该服务费用" placeholder-class="place_holder" value="{{ serviceCost }}" bindblur="serviceCost"  /></view>
+                    </view>
+                </view>
+
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__item min_size">
+                        <view class="weui-form-preview__label min_width font-m">备注</view>
+                        <view class="weui-form-preview__value font-m"><input class="weui-input" placeholder="请填写其他备注" placeholder-class="place_holder" value="{{ remarkOther }}" bindblur="remarkOther"  /></view>
+                    </view>
+                </view>
+            </view>
+        </view>
+
+        <view class="weui-flex bottom-flex">
+            <view class="weui-flex__item">
+                <button class="weui-btn" type="primary" plain="true" bindtap='goBack'>取消订单</button>
+            </view>
+            <view class="weui-flex__item">
+                <button class="weui-btn" type="primary" bindtap='confirm'>完成服务</button>
+            </view>
+        </view>
+    </view>
+</view>
+

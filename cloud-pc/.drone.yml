@@ -1,0 +1,50 @@
+workspace:
+
+clone:
+  git:
+    image: plugins/git
+
+pipeline:
+  build:
+    image: registry.cn-beijing.aliyuncs.com/wa/dev:vue
+    when:
+      event: push
+      branch: master
+    secrets: [ upx_user, upx_passwd ]
+    commands:
+      - make env
+      - npm run build
+      - upx login tboss-funxdata $UPX_USER $UPX_PASSWD
+      - upx sync ./dist/ /
+
+  release-pre:
+    image: registry.cn-beijing.aliyuncs.com/wa/dev:vue
+    when:
+      event: push
+      branch: release-*
+    secrets: [ upx_user, upx_passwd ]
+    commands:
+      - echo $DRONE_BRANCH $DRONE_COMMIT
+      - make env
+      - npm run build
+      - upx login pc-pre-strongberry $UPX_USER $UPX_PASSWD
+      - upx sync ./dist/ /
+      - upx sync ./dist/index.html /.bak/index.html-$DRONE_COMMIT
+      - echo "sync to production"
+      - upx login boss-strongberry $UPX_USER $UPX_PASSWD
+      - mkdir ./dist/.bak
+      - mv ./dist/index.html ./dist/.bak/index.html-$DRONE_COMMIT
+      - upx sync ./dist/ /
+
+  release:
+    image: registry.cn-beijing.aliyuncs.com/wa/dev:vue
+    when:
+      event: tag
+      tag: v*
+    secrets: [ upx_user, upx_passwd ]
+    commands:
+      - echo $DRONE_COMMIT
+      - upx login boss-strongberry $UPX_USER $UPX_PASSWD
+      - echo "sync to production"
+      - upx get /.bak/index.html-$DRONE_COMMIT index.html-$DRONE_COMMIT
+      - upx sync index.html-$DRONE_COMMIT index.html

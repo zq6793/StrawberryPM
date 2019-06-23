@@ -1,0 +1,226 @@
+.preview_panel{
+  margin-top: 20rpx;
+}
+.weui-cells::after{
+  border-bottom: none;
+}
+.resident_title{
+  font-size: 30rpx;
+}
+.resident_center{
+  height: 40rpx;
+  line-height: 40rpx;
+}
+.resident_center:after{
+   border-bottom: none;
+}
+.service_dis{
+  padding: 10px 0;
+}
+.tip{
+	height: 68rpx;
+	line-height: 68rpx;
+	border-bottom: 1px rgb(229,229,229) solid;
+}
+.title{
+	margin:20rpx 0 20rpx;
+}
+.border-bottom{
+	border-bottom: 1px rgb(229,229,229) solid;
+}
+.weui-cell__ft{font-size: 28rpx;}
+
+.weui-cells::before,
+.weui-cell::before{
+  border-top: none;
+}
+.weui-form-preview__hd::after,
+.weui-form-preview::after ,
+.weui-cells::after{
+  border-bottom: none;
+} 
+.detail-list,
+.coupon-list{
+	width: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 10;
+}
+.coupon-list .comfirm,
+.detail-list .comfirm{
+  width: 90%;
+  margin: 30rpx auto;  
+}
+.coupon-money{
+	width: 36%;
+  padding-left:16rpx;
+  line-height: 124rpx;
+  float: left;
+}
+.coupon-list image{
+  width: 90%;
+  height: 146rpx;
+  line-height: 146rpx;
+  overflow: hidden;
+  position: absolute;
+}
+.coupon-cont{
+  width: 92%;
+  height: 124rpx;
+  position: relative;
+}
+.coupon-cont .weui-cell__ft{
+  text-align:center;
+  float: left;
+  margin-top: 20rpx;
+}
+.coupon-text{
+  height:44rpx;
+  line-height:44rpx;
+}
+.coupon-cont .weui-check__hd_in-checkbox{
+  float: right;
+  padding-top: 40rpx;
+}
+.discount_money{
+	color: red;
+	text-align: right;
+	margin-right: 20px;
+}
+.resident_line .delete{
+  width: 192rpx;
+  height: 50rpx;
+  line-height: 46rpx;
+  text-align: center;
+  font-size: 28rpx;
+  float: right;
+}
+.useCoupon{
+  margin-top: 20rpx;
+}
+.coupon{
+  padding-right: 30rpx;
+}
+.coupon_label{
+  height: 190rpx;
+  padding: 0 5%;
+}
+.bottom-flex{
+  width: 100%;
+  margin: 50rpx auto;
+  text-align: center;
+}
+.weui-btn{
+  width: 300rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+}
+
+.pay-list {
+  background: #fff;
+}
+.pay-list .weui-cells__title{
+  font-size: 26rpx;
+}
+.pay-list .pay-li{
+  height: 40px;
+  line-height: 40px;
+}
+.room-pic .room-pic-top{
+  padding: 0 30rpx;
+}
+.pays{
+  margin-top: -30rpx;
+}
+.delete-pay{
+  width: 30rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  position: absolute;
+  right: 15px;
+  margin-top: 11px;
+  background: red;
+  color: #fff;
+  text-align: center;
+  border-radius: 100%;
+}
+
+.top{
+  border-top: 1px rgb(229,229,229) solid;
+}
+.room-pic{
+  padding-right: 30rpx;
+}
+.distance_bottom{
+  width: 100%;
+  height: 150rpx;
+  margin: 40rpx auto;
+}
+.img_distance{
+  font-size: 28rpx;
+  margin: 0 auto;
+  text-align: center;
+}
+.resident_documents {
+  width:150rpx;
+  height: 150rpx;
+  line-height: 150rpx;
+  border: 1rpx solid #d9d9d9;
+}
+.resident_documents image{
+  width:150rpx;
+  height: 150rpx;
+}
+.img_distances{
+  margin-left: 20rpx;
+}
+.add_pic{
+  width:150rpx;
+  height: 150rpx;
+  line-height: 150rpx;
+  border: 1px #ededed solid;
+  text-align: center;
+  float:left;
+}
+.room-picture{
+  padding: 0 20rpx 10rpx 30rpx;
+}
+.tips{
+  padding: 0 30rpx;
+  margin: -10rpx 0 10rpx 0;
+}
+
+button[type="primary"]{
+  background-color: #614789;
+  border: none;
+  color: #fff;
+}
+.weui-cell__ft{font-size: 28rpx;}
+button[type="primary"][plain]{
+  background-color: transparent;
+  color: #614789;
+  border: 1px solid #614789;
+}
+ .button-hover[type="primary"][plain]{
+  background-color:rgba(97,71,137,0.8);
+  color: #614789;
+  border: 1px solid #614789;
+}
+.resident_line::before{
+  content:" ";
+  position:absolute;
+  top:0;
+  right:0;
+  height:1px;
+  border-top:1rpx solid #d9d9d9;
+  color:#d9d9d9;
+  left:15px;
+}
+.resident_line{
+  position: relative;
+}
+.all_border::after,
+.all_border::before{
+  border: none;
+}

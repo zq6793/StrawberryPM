@@ -1,0 +1,133 @@
+<template>
+  <section class="all-box">
+    <el-form :inline="true" class="fx-table-sort-head">
+      <el-form-item size="small">
+        <el-radio-group v-model="tabbyname" @change="tabChange">
+          <el-radio-button label="门店"></el-radio-button>
+          <el-radio-button label="员工"></el-radio-button>
+        </el-radio-group>
+      </el-form-item>
+      <el-form-item label="" size="small">
+        <city-store-select :route-query="true" @set="refresh"></city-store-select>
+      </el-form-item>
+      <el-form-item label="" size="small">
+        <date-interval-select :route-query="true" @set="refresh"></date-interval-select>
+      </el-form-item>
+      <el-form-item size="small">
+        <el-button type="primary" @click="handleExports" size="small">批量导出</el-button>
+      </el-form-item>
+    </el-form>
+    <!--列表-->
+    <el-table :data="billFlows" @selection-change="selsChange" style="width: 100%;" v-loading="listLoading" border>
+      <el-table-column prop="store_name" label="门店名称" width="190" align="center">
+      </el-table-column>
+      <el-table-column prop="employee_name" label="员工姓名" align="center">
+      </el-table-column>
+      <el-table-column prop="consult_count" label="咨询数" align="center">
+      </el-table-column>
+      <el-table-column prop="visit_count" label="来访数" align="center">
+      </el-table-column>
+      <el-table-column prop="reserve_count" label="预定" align="center">
+      </el-table-column>
+      <el-table-column prop="newrent_count" label="新签" align="center">
+      </el-table-column>
+      <el-table-column prop="renewal_count" label="续租" align="center">
+      </el-table-column>
+      <el-table-column prop="sublet_count" label="转租" align="center">
+      </el-table-column>
+      <el-table-column prop="changeroom_count" label="换房" align="center">
+      </el-table-column>
+       <el-table-column prop="outnormal_count" label="正常退房" align="center">
+      </el-table-column>
+      <el-table-column prop="outdefault_count" label="违约退房" align="center">
+      </el-table-column>
+    </el-table>
+    <pagination-select :route-query="true" :total="total" @set="refresh"></pagination-select>
+    <!-- 查看信息 -->
+  </section>
+</template>
+<script>
+import { CityStoreSelect, PaginationSelect, DateIntervalSelect } from '@/components/selects'
+import { chartOperationRentoutEmployee, rentoutEmployeeExcel } from '@/api/api'
+export default {
+  components: {
+    CityStoreSelect,
+    DateIntervalSelect,
+    PaginationSelect,
+  },
+  data() {
+    return {
+      listLoading: false,
+      billFlows: [],
+      total: 0,
+      startTime: '',
+      endTime: '',
+      tabbyname: '员工'
+    }
+  },
+  mounted() {
+    this.refresh()
+  },
+  methods: {
+    tabChange() {
+      switch (this.tabbyname) {
+        case '门店' :
+          this.$emit('set', 'outroom', 'list')
+          break
+        case '员工' :
+          this.$emit('set', 'outroom', 'data')
+          break
+        default :
+          this.$emit('set', 'outroom', 'list')
+          break
+      }
+    },
+    refresh () {
+      this.getBillflow()
+    },
+    getBillflow() {
+      let that = this
+      let para = this.queryOption()
+      that.listLoading = true
+      chartOperationRentoutEmployee(para).then(res => {
+        that.billFlows = res.data.items
+        that.total = res.data.count
+        that.listLoading = false
+      }).catch(function(err) {
+        that.listLoading = false
+      })
+    },
+    /* 批量导出 */
+    handleExports () {
+      let that = this
+      let time = ''
+      let para = this.queryOption()
+      that.startTime = para.begin_time.substr(0, 10)
+      that.endTime = para.end_time.substr(0, 10)
+      time = that.startTime + '--' + that.endTime
+      that.$confirm('确认导出选中记录吗？', '提示', {
+        type: 'warning'
+      }).then(() => {
+        rentoutEmployeeExcel(para).then((res) => {
+          let blob = new Blob([res.data ], { type: 'application/octet-stream;charset=utf-8' }) // 创建一个blob对象
+          let a = document.createElement('a') // 创建一个<a></a>标签
+          a.href = URL.createObjectURL(blob) // response is a blob
+          a.download = time + '.xlsx' // 文件名称
+          a.style.display = 'none'
+          document.body.appendChild(a)
+          a.click()
+          a.remove()
+          setTimeout(() => {
+            that.isclick = false
+          }, 1200)
+          that.$message({
+            message: '导出表成功',
+            type: 'success',
+          })
+        })
+      })
+    },
+  },
+}
+
+</script>

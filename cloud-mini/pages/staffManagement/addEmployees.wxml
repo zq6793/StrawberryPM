@@ -1,0 +1,10 @@
+<view class="page">
+    <view class='code'>
+        <view class="code-cont bg-white">            
+            <image class="code-img" src="{{codeUrl}}"></image>
+            <text class="scan-code-end" bindtap='colseCode'>已完成扫码</text>
+        </view>
+    </view>
+
+    <!-- <button class="weui-btn" type="primary" bindtap='addStaff'>确认添加</button> -->
+</view>

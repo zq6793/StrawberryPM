@@ -1,0 +1,47 @@
+<view class="page">    
+    <view class="weui-form-preview preview_panel all_border">
+        <view class="weui-form-preview__bd ">
+            <view class="weui-form-preview__hd resident_center service_dis">
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label resident_color resident_title">缴费金额</view>
+                    <view class="weui-form-preview__value font-m">￥{{ total }}</view>
+                </view>
+            </view>
+        </view>
+
+        <view class="weui-form-preview__bd resident_line">
+            <view class="weui-form-preview__hd resident_center service_dis">  
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label resident_color resident_title">房间信息</view>
+                </view>
+            </view>  
+            <view class="weui-form-preview__item min_size">
+                <view class="weui-form-preview__label min_width font-m">房间号码</view>
+                <view class="weui-form-preview__value font-m">{{ user.room.number }}</view>
+            </view>
+            <view class="weui-form-preview__item">
+                <view class="weui-form-preview__label min_width font-m">姓名</view>
+                <view class="weui-form-preview__value font-m">{{ user.name }}</view>
+            </view>
+            <view class="weui-form-preview__item">
+                <view class="weui-form-preview__label min_width font-m">联系方式</view>
+                <view class="weui-form-preview__value font-m color-green" data-phone='{{ user.phone }}' catchtap="calling">{{ user.phone }}</view>
+            </view>
+        </view>
+
+        <view class="weui-form-preview__bd resident_line">
+            <view class="weui-form-preview__hd resident_center service_dis">  
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label resident_color resident_title">费用明细</view>
+                </view>
+            </view>  
+            <view class="weui-form-preview__item min_size" wx:for="{{ pay }}" wx:key="index">
+                <view class="weui-form-preview__label min_width font-m">{{ item.type + '(' + item.year + '年' + item.month + '月)' }}</view>
+                <view class="weui-form-preview__value font-m">{{ item.paid +'元' }}</view>
+            </view>
+        </view>
+
+    </view>
+
+    <button class="weui-btn" type="primary" bindtap="moneyBtn">确认收钱</button>
+</view>

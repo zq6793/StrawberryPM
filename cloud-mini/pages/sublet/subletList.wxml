@@ -1,0 +1,77 @@
+<view class="page__hd page__bd_spacing">  
+    <view class="weui-search-bar">
+        <view class="weui-search-bar__form">
+            <view class="weui-search-bar__box">
+                <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+                <input type="text" class="weui-search-bar__input" placeholder="搜索房间号" value="{{ inputVal }}" focus="{{ inputShowed }}" bindinput="inputTyping" />
+                <view class="weui-icon-clear" wx:if="{{ inputVal.length > 0 }}" bindtap="clearInput">
+                    <icon type="clear" size="14"></icon>
+                </view>
+            </view>
+            <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+                <icon class="weui-icon-search" type="search" size="14"></icon>
+                <view class="weui-search-bar__text">搜索房间号</view>
+            </label>
+        </view>
+        <view class="weui-search-bar__cancel-btn" hidden="{{ !inputShowed }}" bindtap="hideInput">取消</view>
+    </view>
+    <navigator class="weui-cell weui-cell_access book_pad" hover-class="none" url="/pages/sublet/subletInfo"  wx:if="{{ inputVal.length == 0 && showAddRoom }}">
+        <view class="weui-cell__bd">办理转租</view>
+        <view class="weui-cell__ft">
+          <view class='add'>＋</view>
+        </view>
+    </navigator> 
+    <view class="weui-cells weui-cells_after-title book_interval cell_border" wx:if="{{ inputVal.length > 0 }}">
+        <block wx:for="{{ searchInfo }}" wx:key="index">
+            <navigator class="weui-cell choice" hover-class="none" url="/pages/sublet/examine?id={{ item.ID }}&status={{ item.status }}" >
+         <!--        <view class="weui-cell__hd service_img">
+                    <image src="{{item.resident.avatar?item.resident.avatar :'./../../images/userImg.png'}}"></image>
+                </view> -->
+                <view class="weui-cell__bd">
+                    <view class='sequence'><view class='booker'>原住户:{{ item.old_resident_name }}--新住户:{{ item.new_resident_name }} {{ item.room_number }}</view><view class='book_dollar'>状态</view></view>
+                    <view class='book_remark'>{{ item.transform_time_e }}</view>
+                </view>
+                <view class="weui-cell__ft">
+                    <view class='book_nu'></view>
+                    <view class="weui-cell__ft weui-cell__ft_in-access font-lilttle">查看</view>
+                </view>
+         <!--        <button class="weui-btn delete" type="primary" plain="true" catchtap='' data-postId='{{item.id}}'>新合同签约信息</button> -->
+            </navigator>
+        </block>
+    </view>
+    <view class="weui-cells weui-cells_after-title book_interval cell_border" wx:if="{{inputVal.length == 0}}">
+        <block wx:for="{{ sublets }}" wx:key="index">
+            <navigator class="weui-cell choice" hover-class="none" url="/pages/sublet/examine?id={{ item.ID }}&status={{ item.status }}" >
+           <!--      <view class="weui-cell__hd service_img">
+                   <image src="{{ item.resident_head_url }}"></image>
+                </view> -->
+                <view class="weui-cell__bd">
+                    <view class='sequence'><view class='booker'>原住户:{{ item.old_resident_name }}--新住户:{{ item.new_resident_name }} {{ item.room_number }}</view>
+                    <view class="service_status color-back" wx:if="{{ item.status === 'GENERATE' }}">未审核</view>
+                    <view class="service_status color-back" wx:if="{{ item.status === 'AUDIT' }}">审核中</view>
+                    <view class="service_status color-back" wx:if="{{ item.status === 'COMPLETE' }}">已完成</view>
+                    <view class="service_status color-back" wx:if="{{ item.status === 'UNAPPROVED' }}">未通过</view>
+                    <view class="service_status color-back" wx:if="{{ item.status === 'UNPAID' }}">未付款</view>
+                </view>
+                    <view class='book_remark'>{{ item.CreatedAt }}</view>
+                </view>
+                <view class="weui-cell__ft">
+                    <view class='book_nu'></view>
+                    <view class="weui-cell__ft weui-cell__ft_in-access font-lilttle">查看</view>
+                </view>
+          <!--       <button class="weui-btn delete" type="primary" plain="true" catchtap='' data-postId='{{item.resident.id}}'>新合同签约信息</button> -->
+            </navigator>
+        </block>
+    </view>
+    <view class="blank" wx:if="{{ roomChange.length === 0 }}">
+        <view class="font-m color-gary remind">暂无订单信息</view>
+        <image src="./../../images/boy.png"></image>
+    </view>
+    <view class="rollall {{ loadingState }}">
+         <span class="roll"><image src="./../../images/loading.png"  mode="widthFix"></image></span>
+        <span>正在加载...</span>
+    </view>
+    <view class="footer {{ footerState }}" wx:if="{{ roomChange.length !=0 }}">
+       <span>没有更多啦</span>
+    </view>
+</view>

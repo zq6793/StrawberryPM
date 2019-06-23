@@ -1,0 +1,73 @@
+.pay-cont{
+	text-align: center;
+	padding:28rpx 0;
+	margin: 0;
+	border-bottom: 1px #ededed solid;
+}
+.rollall{
+	width: 200rpx;
+	height: 84rpx;
+	line-height: 48rpx;
+	margin:0px auto; 
+	font-size: 20rpx; 
+	color: rgba(0, 0, 0, 0.32); 
+	text-align: center;
+}
+.roll{ 
+	width: 48rpx;
+	height: 48rpx; 
+	position: relative;
+	float: left; 
+	animation: clockwise 1.5s linear infinite; 
+	display: block;	
+}
+.roll image{
+	width: 48rpx; 
+	height: 48rpx;
+}
+@-webkit-keyframes clockwise {
+  0% { -webkit-transform: rotate(0deg) } 
+  100% { -webkit-transform: rotate(360deg) }
+}
+@keyframes clockwise {
+  0% { transform: rotate(0deg) }
+  100% { transform: rotate(360deg) }
+}
+.weui-search-bar{
+  border-bottom: none;
+}
+.service_panel{
+ padding-right: 20rpx;
+}
+.service_img{
+  width: 90rpx;
+  height: 90rpx;
+  margin-right: 20rpx;
+}
+.service_img image{
+  width: 70rpx;
+  height:70rpx;
+  margin-top: 15rpx;
+}
+ .service_img .move{
+  width: 75rpx;
+  height: 63rpx;
+} 
+.service_obj{
+  color: rgb(0, 0, 0);
+}
+.service_time{
+  color: rgb(178, 178, 178);
+}
+.service_add{
+  font-size:60rpx;
+  color: rgb(199, 199, 204)
+}
+.creat_order{
+  padding :0px 30rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+}
+.cell_dis{
+  margin-bottom:20rpx; 
+}

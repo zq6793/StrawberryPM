@@ -1,0 +1,39 @@
+.impowerBox{
+	width: 100%;
+	margin: 0 auto;
+}
+.impowerBox .qrcode{
+	width: 180px;
+	margin: 15px auto 0;
+	border: none;
+}
+.title,
+#wx_default_tip p:nth-child(2){
+	display:none;
+}
+.wx_after_scan{
+	text-align: center;
+}
+.impowerBox .icon38_msg.succ {
+	background-size: 20px 67px;
+	position: absolute;
+  bottom: 28px;
+	left: 93px;
+	background-position: 0 -23px;
+}
+.impowerBox .icon38_msg {
+	width: 20px;
+	height: 23px;
+}
+h4 {
+	text-align: center;
+	margin-left: 26px;
+}
+.impowerBox .status_txt {
+	display: block;
+}
+.impowerBox .status_txt p {
+	color: #999;
+	top: 3px;
+	text-align: center;
+}

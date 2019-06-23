@@ -1,0 +1,14 @@
+button[type="primary"]{
+ background-color: #614789;
+}
+.weui-btn{
+  width: 690rpx;
+  height: 88rpx;
+  margin: 50rpx auto;
+}
+.button-hover[type="primary"]{
+  background-color:rgba(97,71,137,0.8);
+}
+.weui-cells::after{
+	border: none;
+}

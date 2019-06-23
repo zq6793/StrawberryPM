@@ -1,0 +1,445 @@
+@charset "utf-8";
+/*******************************
+ * @Author:dowell[http://www.fun-x.cn/]
+ * @Creation date:2014.2.17
+ *******************************/
+/* base style */
+body, h1, h2, h3, h4, h5, h6, div, hr, p, blockquote, dl, dt, dd, pre, form, fieldset, legend, button, input, textarea, th, td { margin:0; padding:0 }
+article, section, aside, hgroup, nav, header, footer, figure,figcaption {display: block;margin:0;padding:0}
+body, button, input, select, textarea { font:13px/1.0  Microsoft YaHei,tahoma, arial, \5b8b\4f53; color:#595757 }
+body {overflow-x:hidden;}
+h1, h2, h3, h4, h5, h6 { font-size:100%; font-weight:normal }
+address, cite, dfn, em, var tr,th,td { font-style:normal }
+code, kbd, pre, samp { font-family:courier new, courier, monospace }
+small { font-size:12px }
+ul, ol { list-style:none }
+a {  text-decoration:none;}
+a:hover {text-decoration:none; }
+a:active { }
+sup { vertical-align:text-top }
+sub { vertical-align:text-bottom }
+fieldset, img { border:0 }
+img{vertical-align:top}
+textarea { resize:none }
+/*input { line-height:1.2em; overflow:hidden }*/
+/*table { border-collapse:collapse; border-spacing:0 }*/
+caption, th { text-align:left }
+/*input{
+border:none;
+background:transparent;
+}*/
+.clearfix:after{font-size:0; height:0; visibility:hidden; display:block; content:' '; clear:both}
+.clearfix{display:inline-table; height:1%}
+.clearfix{display:block}
+.hand{cursor:pointer}
+.hide{display:none}
+.fl{float:left}
+.fr{float:right}
+/*
+  感觉要放到方法库里面的内容
+*/
+.el-dialog img{width: 100%;}
+.el-dialog__body{padding: 10px 20px;}
+.expense-box{
+  .el-dialog__body{
+  p{
+    height: 40px;
+    line-height: 40px;
+  }
+  .price{
+    line-height: 30px;
+  }
+  .fee{
+    .person{
+      padding-top:90px;
+    }
+  }
+  .el-textarea__inner{
+    min-height: 800px;
+    padding:5px 7px;
+    line-height: 1.5;
+    width: 100%;
+    font-size: 14px;
+    resize:none;
+  }
+  .el-button{
+    position: absolute;
+    bottom: -14px;
+    right: 10px;
+  }
+}
+}
+.all-box{
+  .el-dialog{
+    .fx-head-s{
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    strong{
+      line-height: 30px;
+      display: block;
+      padding-left: 10px;
+    }
+  }
+}
+
+/*定义一些标题的组件*/
+.fx-head-b{
+  padding: 15px 0px;
+  font-size: 20px;
+}
+.fx-head-m{
+   padding: 10px 0px;
+   font-size: 18px;
+}
+.fx-head-s{
+   padding: 5px 0px;
+   font-size: 16px;
+}
+.fx-head-ss{
+   padding: 5px 0px;
+   font-size: 14px;
+   font-weight: 400;
+}
+.fx-head-sss{
+   font-size: 13px;
+   line-height: 24px;
+   height: 30px;
+}
+.fx-text-tips{
+  font-size: 12px;
+  color:#F56C6C;
+}
+.fx-table-sort-head{
+  padding-top: 10px;
+}
+.fx-table-sort-head .el-form-item{
+  margin-bottom: 10px;
+}
+.fx-pages-main{
+  padding: 0px 10px;
+  height: 80vh;
+  overflow: auto;
+}
+.coupon{
+  padding-top:10px;
+}
+.fx-text-center{
+  text-align: center;
+}
+.content-wrapper .el-tabs__header{
+  background-color:#e4ebec;
+}
+.content-wrapper .el-tabs__item{
+    background: #d5e0e9;
+    color: #606266;
+    font-size:13px;
+      border-top-left-radius: 5px; 
+  border-top-right-radius: 5px;
+}
+.content-wrapper .el-tabs__item.is-active{
+  background-color: #ffffff;
+}
+/*两个css元素控制 header-red-cover header-cover*/
+/* 改了一些主题的颜色，需要修改内容*/
+.el-select .el-input__inner{
+  background-color:#3e5265;
+  border: 0px solid #dcdfe6;
+}
+.el-select-dropdown{
+  background-color:#3e5265;
+  border: 1px #3e5265 solid;
+}
+.el-select-dropdown__item{
+  color: rgba(255,255,255,.4); 
+}
+.el-select-dropdown__item.hover, .el-select-dropdown__item:hover {
+    background-color: #3e5265;
+    color: #ffffff;
+}
+.el-cascader__label{
+color: #ffffff;
+/*background-color:#3e5265;*/
+border-radius:3px; 
+}
+.el-cascader .el-input__inner{
+  color: #ffffff;
+  background-color:#3e5265;
+  border:0px solid #cccccc;
+}
+.el-cascader-menu{
+  border-right: solid 0px #3e5265;
+  background-color: #3e5265;
+}
+.el-cascader-menu__item:focus:not(:active), .el-cascader-menu__item:hover {
+    background-color: #3e5265;
+    color: #ffffff;
+}
+.el-cascader-menu__item{
+  color: rgba(255,255,255,.4); 
+}
+/*登录页面*/
+#app{
+  overflow: hidden;
+}
+.login-page{overflow: hidden;position: absolute;height: 100vh;width: 100%;}
+.login-page .header{height: 60px;width: 100%; background:#ffffff;}
+.login-page .header .index-logoimg{height: 60px;}
+.login-page .header img{height:48px;margin-top:6px; }
+.login-page .login-img{width: 100%;}
+.login-page .login-img img{width: 100%;}
+.login-page .login-img .text{
+  height: 100px;
+}
+.login-page .login-container{
+  flex-grow: 1;display: flex;flex-direction: column;
+  justify-content: center;border:0px;width: 100%;height: 100vh;
+}
+.login-page .login-content{
+  width: 260px;
+  margin: 0px auto;min-height: 450px;
+}
+.login-page .phone {
+  display: flex;flex-direction: column;
+  position: relative;margin-top: 20px;
+}
+.login-page input {
+  width: 260px;height: 40px;line-height: 40px;
+  margin: 10px auto;border: 1px solid rgb(226, 226, 226);
+  border-radius: 3px;padding-left: 3%;outline: 0;
+}
+.login-page .code {
+  width: 100px;
+  height: 40px;
+  line-height: 40px;
+  position: absolute;
+  top: 70px;
+  right: 10px;
+  font-size: 14px;
+  text-align: center;
+  color: #949494;
+  cursor: pointer;
+  display: block;
+}
+.login-page .button {
+  width: 100px;
+  height: 38px;
+  margin-top: 15px;
+  outline: 0;
+}
+.login-ads{background-color: #151524;
+  height: 100vh;
+}
+.el-footer{
+  line-height: 60px;
+  font-size:14px;
+  font-weight: 400;
+  position: fixed;
+  bottom:0px;
+  left: 40px;
+}
+.el-footer a{color: #00AD94;}
+.login-page .qrcode{overflow: hidden;}
+.login-page .login-ads .text{
+    width: 100%;
+    height: auto;
+    left: 0;
+    text-align: center;
+    margin-top: -40%;
+    color: #fff;
+    overflow: hidden;
+    line-height: 60px;
+    font-size: 24px;
+}
+/*header*/
+#app .el-header{height: 48px;width: 100%; background:#ffffff;line-height: 48px;}
+#app .el-main{padding:10px 10px 0px 20px;}
+.el-header .logo{width: 200px;background-color:#151524;height: 48px;position: relative;
+  float: left;text-align: center;}
+.el-header .logo img{height:20px;margin-top:14px;}
+.el-header .logo-collapse-width{width:64px;}
+.el-header .logo-collapse-width .logo-b{display: none;}
+.el-header .logo-width{width: 200px;}
+.el-header .logo-width .logo-m{display: none;}
+.el-header .navbar{
+  border-right:1px solid #eeeeee;
+  width: 48px;text-align:center;
+  float: left;
+}
+.el-menu--popup {padding: 0px;}
+.el-menu-item,.el-submenu__title{height: 48px;line-height: 48px;}
+.el-breadcrumb {
+    margin-bottom: 10px;
+}
+.el-breadcrumb .el-breadcrumb__inner{
+   font-size: 12px;
+}
+.allpage .el-aside{
+    background-color: #151524;
+    height: 95vh;
+    border: 0px;
+    overflow: hidden;
+}
+.el-aside .el-menu {
+  border-right:0px solid #ccc;
+}
+.menu-expanded{width: 200px;}
+.head-navbar-items{
+  float: right;
+  height: 48px;
+  text-align: center;
+}
+.head-navbar-item{float: left;height: 48px;}
+.head-navbar-tips{
+  width:48px;
+  border-right:1px solid #eeeeee;
+  border-left:1px solid #eeeeee;
+}
+.head-navbar-tips .el-badge__content.is-fixed{
+  top:16px;
+}
+.head-navbar-user{width: 100px;}
+.allpage .el-menu--popup{padding:0px 0px;}
+.title{
+    width: 100%;
+    line-height: 18px;
+    font-size: 12px;
+    left: 0;
+    color: #4a4a4a;
+    background: #e4ebec;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    padding: 16px 20px;
+    box-sizing: border-box;
+}
+.allpage .el-pagination{
+  text-align: center;
+  font-weight: 200;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.content-wrapper{background-color: #ffffff;}
+.pages-main{
+  padding:0px 10px;
+}
+
+/*页面列表中的提示*/
+.info-upload-titles{
+  height: 40px;
+  line-height: 40px;
+  width: 100%;
+  border-bottom: 1px solid #eeeeee;
+  display: block;
+  margin-bottom: 10px;
+}
+
+/*审批信息*/
+
+/*审批流信息*/
+.task-flow-allpage{
+  margin-top: 20px;
+}
+.task-flow-allpage .flowbox {
+      padding-top: 10px;
+    }
+.task-flow-allpage .flowright .start {
+    color: #00a69b;
+    font-size: 15px;
+}
+.task-flow-allpage .flowright .end {
+    position: absolute;
+    display: inline-block;
+    color: #00a69b;
+    font-size: 15px;
+}
+.task-flow-allpage .flowright .step {
+    position: relative;
+    margin-left: 10%;
+    margin-right: 6%;
+}
+.task-flow-allpage .flowright .step .linebn {
+    background: #ff982d;
+}
+.task-flow-allpage .flowright .step .vertical {
+    display: block;
+    width: 1px;
+    background: #bbb;
+    height: 124px;
+    margin: 4px 6px;
+}
+.task-flow-allpage .flowright .step:last-of-type .vertical {
+    display: none;
+}
+.task-flow-allpage .flowright .step .text {
+    position: absolute;
+    top: -3px;
+    left: 26px;
+}
+.task-flow-allpage .flowright .step .position {
+    width: 56px;
+    position: absolute;
+    top: -2px;
+    left: -65px;
+    text-align: right;
+}
+.task-flow-allpage .flowright .step .titlcn {
+    color: #ff982d;
+}
+.task-flow-allpage .flowright .step .passs {
+    width: 300px;
+    color: #00a69b;
+}
+.task-flow-allpage .flowright .step .line {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+.task-flow-allpage .flowright .step .linebc {
+    background: #00a69b;
+}
+.task-flow-allpage .flowright .step .nolinebc{
+  background: #e3622d;
+}
+/*审批流左边的信息*/
+.task-flow-allpage .flowbox .flowleft .titles{
+    font-weight: 400;
+    border-bottom: 1px solid #eeeeee;
+    border-bottom: 1px solid #f1f1f1;
+    height: 40px;
+    line-height: 40px;
+    font-size:15px;
+}
+.task-flow-allpage .task-flow-info {
+    padding: 10px 0px;
+    border-bottom: 1px solid #f1f1f1;
+}
+.task-flow-allpage .el-collapse-item__content{
+  color:#606266;
+  font-size:14px;
+  line-height: 26px;
+}
+
+.task-flow-allpage .flowleft .img {
+    /*padding: 20px 0 15px 50px;*/
+}
+.task-flow-allpage .flowleft .img img{
+  /*width: 160px;*/
+  padding-right: 20px;
+}
+/*任务流相关结束*/
+.head-navbar-items .icon-ali-lingdang{
+  font-size:16px;
+}
+.task-flow-allpage .task-flow-info .task-flow-info-t1{
+  line-height: 30px;
+  font-size:14px;
+  font-weight: 400;
+}
+.allCount{
+  height: 30px;
+  line-height: 30px;
+  font-weight: 600;
+}
+
+

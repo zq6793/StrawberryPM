@@ -1,0 +1,11 @@
+.distance{
+  margin-top: 20rpx;
+}
+.weui-btn{
+  margin-bottom: 50rpx;
+  height: 88rpx;
+  width: 690rpx;
+}
+.weui-btn:first-child{
+  margin-top: 50rpx;
+}

@@ -1,0 +1,14 @@
+@import "../information/personInfo.wxss";
+@import "../residentCenter/residentInformation.wxss";
+.service_dis{
+  padding: 10px 0;
+}
+.distance{
+	margin-top: 20rpx;
+}
+.weui-cells::before{
+  border-top: none;
+}
+.weui-cells::after {
+  border-bottom: none;
+}

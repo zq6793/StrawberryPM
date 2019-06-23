@@ -1,0 +1,8 @@
+.title{
+	height: 90rpx;
+	line-height: 90rpx;
+}
+.list-label{
+	height: 90rpx;
+	line-height: 90rpx;
+}

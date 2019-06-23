@@ -1,0 +1,174 @@
+<view class="page">
+    <view class="page__bd" wx:if="{{ isShow }}">
+        <!-- 确认换房及办理入住 -->
+      <view class="bg-white cont">
+            <view class="title">原房间信息</view>
+            <view class="weui-cell weui-cell_access">
+                <view class="weui-cell__bd">
+                    <view>入住房间</view>
+                </view>
+                <view class="weui-cell__ft">{{ oldroomInfo.room.number }}</view>
+            </view>
+            <view class="weui-cell weui-cell_access">
+                <view class="weui-cell__bd">
+                    <view>入住时间</view>
+                </view>
+                <view class="weui-cell__ft">{{ oldroomInfo.resident.begin_time }}</view>
+            </view>
+            <view class="weui-cell weui-cell_access">
+                <view class="weui-cell__bd">
+                    <view>住宿服务费</view>
+                </view>
+                <view class="weui-cell__ft">{{ oldroomInfo.resident.rent_price }}元/月</view>
+            </view>
+            <view class="weui-cell weui-cell_access">
+                <view class="weui-cell__bd">
+                    <view>物业服务费</view>
+                </view>
+                <view class="weui-cell__ft">{{ oldroomInfo.resident.property_price }}元/月</view>
+            </view>
+            <view class="weui-cell weui-cell_access">
+                <view class="weui-cell__bd">
+                    <view>支付周期</view>
+                </view>
+                <view class="weui-cell__ft">{{ oldroomInfo.resident.pay_frequency }}个月</view>
+            </view>
+            <view class="weui-cell weui-cell_access">
+                <view class="weui-cell__bd">
+                    <view>原房间住宿押金</view>
+                </view>
+                <view class="weui-cell__ft">{{ oldroomInfo.resident.deposit_money }}元</view>
+            </view>
+            <view class="weui-cell weui-cell_access">
+                <view class="weui-cell__bd">
+                    <view>原房间其它押金</view>
+                </view>
+                <view class="weui-cell__ft">{{ oldroomInfo.resident.tmp_deposit }}元</view>
+            </view>
+        </view>
+        <view class="bg-white cont">
+            <view class="title">新房间信息</view>
+            <view class="weui-cell weui-cell_access">
+                <view class="weui-cell__bd">
+                    <view>入住房间</view>
+                </view>
+                <view class="weui-cell__ft">{{ newroomInfo.room.number }}</view>
+            </view>
+            <view class="weui-cell weui-cell_access">
+                <view class="weui-cell__bd">
+                    <view>换房时间</view>
+                </view>
+                <view class="weui-cell__ft">{{ newroomInfo.resident.begin_time }}</view>
+            </view>
+            <view class="weui-cell weui-cell_access">
+                <view class="weui-cell__bd">
+                    <view>住宿服务费</view>
+                </view>
+                <view class="weui-cell__ft">{{ newroomInfo.resident.rent_price }}元/月</view>
+            </view>
+            <view class="weui-cell weui-cell_access">
+                <view class="weui-cell__bd">
+                    <view>物业服务费</view>
+                </view>
+                <view class="weui-cell__ft">{{ newroomInfo.resident.property_price }}元/月</view>
+            </view>
+            <view class="weui-cell weui-cell_access">
+                <view class="weui-cell__bd">
+                    <view>支付周期</view>
+                </view>
+                <view class="weui-cell__ft">{{ newroomInfo.resident.pay_frequency }}个月</view>
+            </view>
+            <view class="weui-cell weui-cell_access">
+                <view class="weui-cell__bd">
+                    <view>新房间住宿押金</view>
+                </view>
+                <view class="weui-cell__ft">{{ newroomInfo.resident.deposit_money }}元</view>
+            </view>
+            <view class="weui-cell weui-cell_access">
+                <view class="weui-cell__bd">
+                    <view>新房间其它押金</view>
+                </view>
+                <view class="weui-cell__ft">{{ newroomInfo.resident.tmp_deposit }}元</view>
+            </view>
+        </view>
+        <view class="weui-form-preview preview_panel font-m">
+            <view class="weui-cells weui-cells_after-title font-middle color-gary">
+                <view class="weui-cell">
+                    <view class="weui-cell__bd color-back font-m">原房间调账转出</view>
+                </view>
+                <view class="weui-form-preview__bd">
+                    <view class="weui-form-preview__item min_size font-m" wx:for="{{ transfer_out }}" wx:key="index">
+                        <view class="weui-form-preview__label min_width">{{ item.type }}</view>
+                        <view class="weui-form-preview__label min_width">({{ item.year +'/'+ item.month }})</view>
+                        <view class="weui-form-preview__value">{{ item.money +'元'}}</view>
+                    </view>
+                </view>
+            </view>
+            <view class="line"></view>
+            <view class="weui-cells weui-cells_after-title font-middle color-gary">
+                <view class="weui-cell">
+                    <view class="weui-cell__bd color-back font-m">原房间调账转入</view>
+                </view>
+                <view class="weui-form-preview__bd">
+                    <view class="weui-form-preview__item min_size font-m" wx:for="{{ transfer_in }}" wx:key="index">
+                        <view class="weui-form-preview__label min_width">{{ item.type }}</view>
+                        <view class="weui-form-preview__label min_width">({{ item.year +'/'+ item.month }})</view>
+                        <view class="weui-form-preview__value">{{ item.money +'元'}}</view>
+                    </view>
+                </view>
+            </view>
+            <view class="line"></view>
+            <view class="weui-cells weui-cells_after-title font-middle color-gary">
+                <view class="weui-cell">
+                    <view class="weui-cell__bd color-back font-m">原房间应收</view>
+                </view>
+                <view class="weui-form-preview__bd">
+                    <view class="weui-form-preview__item min_size font-m" wx:for="{{ old_room_unpaid }}" wx:key="index">
+                        <view class="weui-form-preview__label min_width">{{ item.type }}</view>
+                        <view class="weui-form-preview__label min_width">({{ item.year +'/'+ item.month }})</view>
+                        <view class="weui-form-preview__value">{{ item.money +'元'}}</view>
+                    </view>
+      <!--               <view class="weui-form-preview__hd resident_center"> 
+                        <view class="weui-form-preview__item">
+                            <view class="weui-form-preview__label resident_color resident_title">合计</view>
+                            <view class="weui-form-preview__value font-m status_red">{{ totalpaidFee }}元</view>
+                        </view>
+                    </view> -->
+                </view>
+            </view>
+            <view class="line"></view>
+            <view class="weui-cells weui-cells_after-title font-middle color-gary">
+                <view class="weui-cell">
+                    <view class="weui-cell__bd color-back font-m">新房间应收</view>
+                </view>
+                <view class="weui-form-preview__bd">
+                    <view class="weui-form-preview__item min_size font-m" wx:for="{{ new_room_unpaid }}" wx:key="index">
+                        <view class="weui-form-preview__label min_width">{{ item.type }}</view>
+                        <view class="weui-form-preview__label min_width">({{ item.year +'/'+ item.month }})</view>
+                        <view class="weui-form-preview__value">{{ item.money +'元'}}</view>
+                    </view>
+      <!--               <view class="weui-form-preview__hd resident_center"> 
+                        <view class="weui-form-preview__item">
+                            <view class="weui-form-preview__label resident_color resident_title">合计</view>
+                            <view class="weui-form-preview__value font-m status_red">{{ totalpaidFee }}元</view>
+                        </view>
+                    </view> -->
+                </view>
+            </view>
+        </view>
+        
+        <!-- 按钮 -->
+<!--         <view class="page__bd page__bd_spacing bottom-flex" wx:if="{{ isShowBtn }}">
+            <view class="weui-flex">
+                <view class="weui-flex__item">
+                    <button class="weui-btn" type="primary" plain="true" bindtap='goback'>取消办理</button>
+                </view>
+                <view class="weui-flex__item">
+                    <button class="weui-btn" type="primary" bindtap='checkChangroom'>提交审批</button>
+                </view>
+            </view>
+        </view> -->
+    </view>
+
+</view>
+

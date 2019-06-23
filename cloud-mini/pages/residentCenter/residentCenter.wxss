@@ -1,0 +1,48 @@
+.pay-cont{
+	text-align: center;
+	padding:28rpx 0;
+	margin: 0;
+	border-bottom: 1px #ededed solid;
+}
+.weui-search-bar{
+  border-bottom: none;
+}
+.service_panel{
+  padding-right: 30rpx;
+}
+.service_img{
+  width: 90rpx;
+  height: 90rpx;
+  margin-right: 24rpx;
+}
+.service_img image{
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%; 
+	-webkit-border-radius:50%;
+}
+.service_obj{
+  color: rgb(0, 0, 0);
+  font-size:30rpx;
+}
+.service_time{
+  color: rgb(178, 178, 178);
+}
+.service_status{
+  font-size: 28rpx;
+}
+.status_green{
+  color: rgb(0, 194, 3)
+}
+.status_red{
+  color: rgb(243,64,53)
+}
+.status_black{
+  color: rgb(0, 0, 0)
+}
+.cell_border::after{
+  border: none;
+}
+.cell_border::before{
+  border: none;
+}

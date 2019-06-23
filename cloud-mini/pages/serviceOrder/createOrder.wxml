@@ -1,0 +1,91 @@
+<view class="page">
+    <view class="page__hd page__bd_spacing ">
+        <view class="weui-cells weui-cells_after-title distance cell_border">
+            <view class="weui-cells__title bg-white">服务房间信息</view>
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">服务房号</view>
+                </view>
+                <view class="weui-cell__bd">
+                     <input class="weui-input"  bindinput="inputRoomNumber" value="{{ roomNumber }}" placeholder="请输入需要服务房间号" placeholder-class="placeholder" auto-focus bindblur="searchRoom" />
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">预约时间</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <picker mode="date" value="{{ time }}" bindchange="bindTimeChange">
+                        <view class="weui-select">{{ time }}</view>
+                    </picker>
+                </view>
+            </view>
+        </view>
+
+        <view class="weui-cells weui-cells_after-title distance cell_border">
+            <view class="weui-cells__title bg-white">服务客人信息</view>
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">姓名</view>
+                </view>
+                <view class="weui-cell__bd">
+                     <input class="weui-input" bindinput="serviceCustom" value="{{ name }}" placeholder="请填写姓名" placeholder-class="placeholder"/>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">联系方式</view>
+                </view>
+                <view class="weui-cell__bd">
+                     <input class="weui-input"  bindinput="customPhone" value="{{ phone }}" placeholder="请输入手机号码" placeholder-class="placeholder"/>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_select">
+                <view class="weui-cell__hd">
+                    <view class="weui-label ">服务类别</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <picker bindchange="changeServiceType" value="{{ serviceTypeIndex }}" range="{{ serviceTypes }}" range-key="{{'name'}}">
+                    <view class="weui-select">{{ serviceTypes[serviceTypeIndex].name }}</view>
+                    </picker>
+                </view>
+            </view>
+            <view hidden="{{ serviceTypes[serviceTypeIndex].type != 'REPAIR' }}" class="weui-cell weui-cell_select">
+                <view class="weui-cell__hd">
+                    <view class="weui-label ">服务内容</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <picker mode="multiSelector" bindchange="changRepairContent" value="{{ repairContentIndex }}" range="{{ repairContentArray }}" range-key="{{'value'}}">
+                    <view class="weui-select">{{ repairContentArray[0][repairContentIndex[0]].value }}-{{ repairContentArray[1][repairContentIndex[1]].value }}</view>
+                    </picker>
+                </view>
+            </view>
+
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">服务费用</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" type="digit" placeholder="请输入该服务的费用" value="{{ money }}" bindinput="inputMoney" />
+                </view>
+                <view class="weui-cell__ft unit">元</view>
+            </view>
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">备注信息</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" placeholder="填写其他备注" placeholder-class="place_holder" value="{{ remark }}" bindinput="inputRemark"  />
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view class="page__bd page__bd_spacing bottom-flex">
+        <view class="weui-flex">
+            <view class="weui-flex__item">
+                <button class="weui-btn" type="primary"  bindtap='sendOrder'>确认</button>
+            </view>
+        </view>
+    </view>
+</view>

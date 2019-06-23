@@ -1,0 +1,211 @@
+<view class="page">
+<view class="page__bd">
+<view class="weui-form-preview preview_panel font-m">
+<view class="weui-form-preview__bd">
+<view class="weui-form-preview__hd">
+    <view class="weui-form-preview__item title">
+        <view class="weui-form-preview__label color-back">原住户信息</view>
+    </view>
+</view>
+<view class="weui-form-preview__item min_size">
+    <view class="weui-form-preview__label min_width">房间号</view>
+    <view class="weui-form-preview__value">{{ resident.room.number }}</view>
+</view>
+<view class="weui-form-preview__item">
+    <view class="weui-form-preview__label min_width">住户姓名</view>
+    <view class="weui-form-preview__value">{{ resident.resident.name }}</view>
+</view>
+<view class="weui-form-preview__item">
+    <view class="weui-form-preview__label min_width">联系方式</view>
+    <view class="weui-form-preview__value">{{ resident.resident.phone }}</view>
+</view>
+<view class="weui-form-preview__item">
+    <view class="weui-form-preview__label min_width">住宿服务费</view>
+    <view class="weui-form-preview__value">{{ resident.resident.real_rent_money }}</view>
+</view>
+<view class="weui-form-preview__item">
+    <view class="weui-form-preview__label min_width">物业服务费</view>
+    <view class="weui-form-preview__value">
+      {{ resident.resident.real_property_costs }}
+    </view>
+</view>
+<view class="weui-form-preview__item">
+    <view class="weui-form-preview__label min_width">住宿押金</view>
+    <view class="weui-form-preview__value">
+      {{ resident.deposit_rent }}
+    </view>
+</view>
+<view class="weui-form-preview__item">
+    <view class="weui-form-preview__label min_width">其他押金</view>
+    <view class="weui-form-preview__value">
+      {{ resident.deposit_tmp }}
+    </view>
+</view>
+<view class="weui-form-preview__item bottom title font-m">
+    <view class="weui-form-preview__label min_width">合同日期</view>
+    <view class="weui-form-preview__value">
+    {{ resident.resident.begin_time}} ~ {{ resident.resident.end_time }}
+    </view>
+</view>
+</view>
+<view class="weui-form-preview__bd">
+<view class="weui-form-preview__hd">
+    <view class="weui-form-preview__item title">
+        <view class="weui-form-preview__label color-back">转租信息</view>
+    </view>
+</view>
+<view class="weui-form-preview__item min_size">
+    <view class="weui-form-preview__label min_width">转租日期</view>
+    <view class="weui-form-preview__value">{{ transform_rent.transform_time_e ? transform_rent.transform_time_e : '无' }}</view>
+</view>
+<!-- <view class="weui-form-preview__item">
+    <view class="weui-form-preview__label min_width">转租类型</view>
+    <view class="weui-form-preview__value">{{ checkoutType }}</view>
+</view> -->
+<view class="weui-form-preview__item">
+    <view class="weui-form-preview__label min_width">备注</view>
+    <view class="weui-form-preview__value">{{ transform_rent.remark ? transform_rent.remark : '无' }}</view>
+</view>
+</view>
+<view class="weui-form-preview__bd">
+<view class="weui-form-preview__hd">
+    <view class="weui-form-preview__item">
+        <view class="weui-form-preview__label color-back">验房照片</view>
+    </view>
+</view>
+<view  class="weui-form-preview__item" 
+wx:if="{{ transform_rent.check_images.length > 0 }}">
+    <view class="weui-form-preview__value">
+        <view class="weui-uploader__files resident_documents weui-uploader__file" bindtap="showImg" wx:for="{{ transform_rent.check_images }}" data-imgsrc="{{ item }}" wx:key="{{ index }}">
+            <image mode="weui-uploader__img" src="{{ item }}" mode="aspectFill" />
+        </view>
+    </view>
+</view>
+</view>
+<view class="line"></view>
+<view class="weui-cells weui-cells_after-title font-middle color-gary">
+<view class="weui-cell">
+<view class="weui-cell__bd color-back font-m">应收费用</view>
+<view class="weui-cell__ft" wx:if="{{ isShowOrder }}">
+    <button class="add-btn font-lilttle" type="primary" plain="true" catchtap='choosePay'>添加费用</button>
+</view>
+</view>
+<view class="weui-form-preview__bd">
+<view class="weui-form-preview__item min_size font-m" wx:for="{{ receivablesList }}" wx:key="index">
+    <view class="weui-form-preview__label min_width">{{ item.type }}</view>
+    <view class="weui-form-preview__label min_width">({{ item.year +'/'+ item.month }})</view>
+    <view class="weui-form-preview__value">{{ item.money +'元'}}</view>
+</view>
+<view class="weui-form-preview__item min_size font-m" wx:for="{{ addReceivables }}" wx:key="index">
+    <view class="weui-form-preview__label min_width">{{ item.types }}</view>
+    <view class="weui-form-preview__label min_width">{{ item.time ? item.time : addCostData }}</view>
+    <view class="weui-form-preview__value money right-text">{{ item.money +'元'}}</view>
+    <view class="delete" data-index="{{ index }}" data-money="{{ item.money }}" bindtap="deteleOrder">一</view>
+</view>
+<view class="weui-form-preview__hd resident_center"> 
+    <view class="weui-form-preview__item">
+        <view class="weui-form-preview__label resident_color resident_title">合计</view>
+        <view class="weui-form-preview__value font-m status_red">{{ totalReceivable }}元</view>
+    </view>
+</view>
+</view>
+</view>
+<view class="line"></view>
+<view class="weui-cells weui-cells_after-title font-middle color-gary">
+    <view class="weui-cell">
+        <view class="weui-cell__bd color-back font-m">已缴费用</view>
+    </view>
+    <view class="weui-form-preview__bd">
+        <view class="weui-form-preview__item min_size font-m" wx:for="{{ paidFee }}" wx:key="index">
+            <view class="weui-form-preview__label min_width">{{ item.type }}</view>
+            <view class="weui-form-preview__label min_width">({{ item.year +'/'+ item.month }})</view>
+            <view class="weui-form-preview__value">{{ item.money +'元'}}</view>
+        </view>
+
+        <view class="weui-form-preview__hd resident_center"> 
+            <view class="weui-form-preview__item">
+                <view class="weui-form-preview__label resident_color resident_title">合计</view>
+                <view class="weui-form-preview__value font-m status_red">{{ totalpaidFee }}元</view>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="line"></view>
+<view class="weui-cells weui-cells_after-title font-middle color-gary">
+    <view class="weui-cell">
+        <view class="weui-cell__bd color-back">退款金额</view>
+        <view class="weui-cell__ft status_red">{{ refundAmount }}元</view>
+    </view>
+</view>
+<view class="line"></view>
+<view class="weui-form-preview__bd">
+    <view class="weui-form-preview__hd">
+        <view class="weui-form-preview__item title">
+            <view class="weui-form-preview__label color-back">退款账户</view>
+        </view>
+    </view>
+    <view class="weui-form-preview__item min_size">
+        <view class="weui-form-preview__label min_width">姓名</view>
+        <view class="weui-form-preview__value">{{ transform_rent.account }}</view>
+    </view>
+    <view class="weui-form-preview__item">
+        <view class="weui-form-preview__label min_width">账号</view>
+        <view class="weui-form-preview__value">{{ transform_rent.bank_card_number }}</view>
+    </view>
+    <view class="weui-form-preview__item">
+        <view class="weui-form-preview__label min_width">开户行</view>
+        <view class="weui-form-preview__value">{{ transform_rent.bank }}</view>
+    </view>
+</view>
+<view class="weui-form-preview__bd pic" wx:if="{{ transform_rent.account }}">
+    <view class="weui-form-preview__hd">
+        <view class="weui-form-preview__item ">
+            <view class="weui-form-preview__label color-back">银行卡照片</view>
+        </view>
+    </view>
+    <view class="weui-flex pic-cont">
+        <view class="weui-flex__item"  id="" bindtap="showImg" data-imgsrc="{{ transform_rent.bank_card_front_img }}">
+            <image src='{{ transform_rent.bank_card_front_img }}' mode="aspecFill"></image>
+        </view>
+        <view class="weui-flex__item"  id="" bindtap="showImg" data-imgsrc="{{ transform_rent.bank_card_back_img }}">
+            <image src='{{ transform_rent.bank_card_back_img }}' mode="aspecFill"></image>
+        </view> 
+    </view>
+</view>
+<view class="weui-form-preview__bd pic" wx:if="{{ transform_rent.account }}">
+    <view class="weui-form-preview__hd">
+        <view class="weui-form-preview__item ">
+            <view class="weui-form-preview__label color-back">身份证正反面照片<text class="status_red font-lilttle">请上传与退款账户一致身份证正反照</text></view>
+        </view>
+    </view>
+    <view class="weui-flex pic-cont">
+        <view class="weui-flex__item" bindtap="showImg" data-imgsrc="{{ transform_rent.card_front_img }}">
+            <image src='{{ transform_rent.card_front_img }}' mode="aspecFill"></image>
+        </view> 
+        <view class="weui-flex__item" bindtap="showImg" data-imgsrc="{{ transform_rent.card_front_img }}">
+        <image src='{{ transform_rent.card_back_img }}' mode="aspecFill"></image>
+        </view>    
+    </view>
+</view>
+</view>
+</view>
+<view class="page__bd page__bd_spacing bottom-flex">
+    <view class="weui-flex__item">
+        <button class="btn" type="primary" bindtap='paymentReminder'>推送缴费提醒</button>
+    </view>
+    <!-- 驳回之后 -->
+    <view class="weui-flex">
+        <view class="weui-flex__item">
+            <button class="weui-btn" type="primary" plain="true" bindtap='rejectGoback'>返回</button>
+        </view>
+        <view class="weui-flex__item" wx:if="{{ transform_rent.status == '未审核'||transform_rent.status == '未通过' }}">
+            <button class="weui-btn" type="primary" bindtap='rejectSubmit'>提交审核</button>
+        </view>
+<!--         <view class="weui-flex__item" wx:if="{{ transform_rent.status === 'GENERATE'}}">
+            <button class="weui-btn" type="primary" bindtap='rejectSubmit'>提交审核</button>
+        </view> -->
+    </view>
+</view>
+<!-- 添加应收费用 -->
+</view>
+

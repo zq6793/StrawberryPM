@@ -1,0 +1,136 @@
+<view class="page__hd">
+    <view class="weui-cells modify-price">
+        <view class="weui-cell">
+            <view class="weui-cell__bd">调价 {{nameInfo.type_name}}</view>
+            <view class="weui-cell__ft">{{nameInfo.UpdatedAt}}</view>
+        </view>
+    </view>
+
+    <view class="weui-cells weui-cells_after-title font-middle color-gary modify-price">
+        <!-- <view class="weui-cell tip">
+            <view class="weui-cell__bd color-back font-m">{{nameInfo.store.name}}</view>
+           <view class="weui-cell__ft"></view>
+        </view> -->
+
+        <!-- <view class="weui-cell">
+            <view class="weui-cell__bd">调价房间总数</view>
+            <view class="weui-cell__ft">150</view>
+        </view> -->
+        <view class="weui-cell">
+            <view class="weui-cell__bd">{{nameInfo.store_name}}</view>
+            <view class="weui-cell__ft"></view>
+        </view>
+        <view class="weui-cell">
+            <view class="weui-cell__bd">房间号</view>
+            <view class="weui-cell__ft">{{nameInfo.room_number}}</view>
+        </view>
+
+        <view class="weui-cell">
+            <view class="weui-cell__bd">当前价格</view>
+            <view class="weui-cell__ft">{{nameInfo.ori_price}}元</view>
+        </view>
+
+        <view class="weui-cell">
+            <view class="weui-cell__bd">申请调价价格</view>
+            <view class="weui-cell__ft">{{nameInfo.new_price}}元</view>
+        </view>
+
+        <!-- <view class="weui-cell">
+            <view class="weui-cell__bd">调价方式</view>
+            <view class="weui-cell__ft">批量调价</view>
+        </view> -->
+
+        <!-- <view class="weui-cell">
+            <view class="weui-cell__bd">调价明细</view>
+            <view class="weui-cell__ft">请登录PC管理后台下载附件查看明细</view>
+        </view> -->
+
+        <view class="weui-cell">
+            <view class="weui-cell__bd">调价原因</view>
+            <view class="weui-cell__ft">{{nameInfo.remark}}</view>
+        </view>
+    </view>
+
+    <view class="weui-cells weui-cells_after-title font-middle color-gary modify-price">
+        <view class="weui-form-preview__bd">
+            <view class="weui-form-preview__hd">
+                <view class="weui-form-preview__item title">
+                    <view class="weui-form-preview__label color-back">审批信息</view>
+                </view>
+            </view>
+            <view class="weui-flex" wx:if="{{ taskflowInfo.status == '通过'}}">
+                <view class="next">
+                    <view class="placeholder">完成</view>
+                </view>
+                <view class="top">
+                    <view class="adopt-bg placeholder circle"></view>
+                    <view class="lines"></view>
+                </view>
+                <view class="weui-flex__item">
+                    <view class="placeholder color-back">该审批已结束</view>
+                </view>
+            </view>
+            <view class="weui-flex" wx:if="{{ current_step != null }}">
+                <view class="next">
+                    <view class="placeholder color-gary">当前审批</view>
+                </view>
+                <view class="top">
+                    <view class="yello placeholder circle"></view>
+                    <view class="lines"></view>
+                </view>
+                <view class="weui-flex__item">
+                    <view class="placeholder color-back">{{ showItems }}</view>
+                    <!-- <view class="placeholder color-back" wx:if="{{ approvalNames.length > 5 }}">{{ approvalName }}...</view>
+                <view class="placeholder color-back" wx:else>{{ approvalName }}</view> -->
+                </view>
+            </view>
+            <view class="weui-flex task-flow-list" wx:for="{{ taskflow }}" wx:key="item.id">
+                <view class="next">
+                    <view wx:if="{{item.status == '完成' || item.status == 'COMPLETE'}}" class='color-gary placeholder'>{{ item.status }}</view>
+                    <view wx:elif="{{item.status == '通过' || item.status == 'APPROVED'}}" class='adopt-text placeholder'>{{ item.status }}</view>
+                    <view wx:else class='reject-text placeholder'>{{item.status}}</view>
+                </view>
+                <view class="top">
+                    <view wx:if="{{item.status == '完成' || item.status == 'COMPLETE'}}" class='placeholder circle'></view>
+                    <view wx:elif="{{item.status == '通过' || item.status == 'APPROVED'}}" class='adopt-bg placeholder circle'></view>
+                    <view wx:else class='reject-bg placeholder circle'></view>
+                    <view class="lines"></view>
+                </view>
+                <view class="weui-flex__item">
+                    <view class="placeholder color-back">{{ item.positions[0].name }} {{ item.employee.name }} {{ item.CreatedAt }}</view>
+                    <view class="placeholder font-lilttle msg color-gary">{{ item.remark }}</view>
+                </view>
+            </view>
+            <view class="weui-flex" style="padding-bottom: 70rpx">
+                <view class="next">
+                    <view class="placeholder color-gary">发起</view>
+                </view>
+                <view class="top">
+                    <view class="placeholder circle"></view>
+                </view>
+                <view class="weui-flex__item">
+                    <view class="placeholder color-back">{{ participant.initiator_name }} {{ taskflowInfo.CreatedAt }}</view>
+                </view>
+            </view>
+        </view>
+        <view class="line" wx:if="{{ name === 'toExamine'}}"></view>
+    </view>
+
+
+    <view class="{{name == '2'?'':'nostyle'}}">
+        <view class="tips font-lilttle modify-price">
+            <text>审批意见</text>
+            <textarea placeholder='请填写您的审批意见' class="weui-textarea" name="evaContent" value='{{remark}}' bindinput="getText" />
+        </view>
+        <view class="page__bd page__bd_spacing">
+            <view class="weui-flex">
+                <view class="weui-flex__item">
+                    <button class="weui-btn" type="primary" plain="true" bindtap='goBack'>驳回</button>
+                </view>
+                <view class="weui-flex__item">
+                    <button class="weui-btn" type="primary" bindtap='confirm'>通过</button>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

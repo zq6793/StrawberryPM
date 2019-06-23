@@ -1,0 +1,33 @@
+/* CSS Document */
+html, body, div, p, ul, ol, li, dl, dt, dd, form, table, tr, td, th, hr, h1, h2, h3, h4, h5, h6, img, input {
+  margin: 0;
+  padding: 0; }
+
+header, nav, menu, section, footer, article, aside, canvas, details, figcaption, figure, summary {
+  display: block; }
+
+img {
+  display: block;
+  border: 0;}
+
+input {
+  outline: none; }
+
+ul, ol, dl {
+  list-style: none; }
+
+body {
+  color: #3a3a3a;
+  font-size:16px;
+  font-family: "微软雅黑",Arial;
+ }
+
+a {
+  text-decoration: none;
+  color: #000;
+  display:block;
+   }
+
+.flex{
+  display:flex;
+}

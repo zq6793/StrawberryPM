@@ -1,0 +1,250 @@
+<view class="page">
+    <navigator class="page__bd page__bd_spacing apartments color-white bg" url='/pages/user/roomList' hover-class='none'>
+        <view class="weui-flex content">
+            <view class="weui-flex__item apartment-item">
+                <view class="font-big">{{ statusNumber.blank }}</view>
+                <view class="font-lilttle">空闲</view>
+            </view>
+            <view class="weui-flex__item apartment-item">
+                <view class="font-big">{{ statusNumber.rent }}</view>
+                <view class="font-lilttle">出租</view>
+            </view>
+            <view class="weui-flex__item apartment-item">
+                <view class="font-big">{{ pending ? pending : 0 }}</view>
+                <view class="font-lilttle">欠费</view>
+            </view>
+            <view class="weui-flex__item apartment-item">
+                <view class="font-big">{{ statusNumber.other }}</view>
+                <view class="font-lilttle">其它</view>
+            </view>
+        </view>
+    </navigator>
+    <!-- 入住 -->
+    <view class="page__bd page__bd_spacing  font-lilttle menu bg-white">
+        <view class="weui-flex  color-gary menu-top">
+            <navigator class="weui-flex__item apartment-item" hover-class="none" url="/pages/information/checkIn">
+                <view class="check color-purple"><i class="iconfont icon-banliruzhu"></i></view>
+                <view class="placeholder">入住</view>
+            </navigator>
+            <navigator class="weui-flex__item apartment-item" hover-class="none" url="/pages/register/register">
+                <view class="check color-purple"><i class="iconfont icon-dengji"></i></view>
+                <view class="placeholder">来访登记</view>
+            </navigator>
+            <navigator class="weui-flex__item apartment-item" hover-class="none" url="/pages/booked/bookedList">
+                <view class="check color-purple"><i class="iconfont icon-yuding1"></i></view>
+                <view class="placeholder">预订</view>
+            </navigator>
+            <navigator class="weui-flex__item apartment-item" hover-class="none" url="/pages/checkOut/list">
+                <view class="check color-purple"><i class="iconfont icon-tuifang"></i></view>
+                <view class="placeholder">退房</view>
+            </navigator>
+        </view>
+        <view class="weui-flex color-gary">
+            <navigator class="weui-flex__item" hover-class="none" url="/pages/changeRoom/changeRoomList">
+                <view class="check color-purple"><i class="iconfont icon-huanfang"></i></view>
+                <view class="placeholder">换房</view>
+            </navigator>
+             <navigator class="weui-flex__item" hover-class="none" url="/pages/renew/renewList">
+                <view class="check color-purple"><i class="iconfont icon-xuzu"></i></view>
+                <view class="placeholder">续租</view>
+            </navigator>
+            <navigator class="weui-flex__item" hover-class="none" url="/pages/sublet/subletList">
+                <view class="check color-purple"><i class="iconfont icon-zhuanzu"></i></view>
+                <view class="placeholder">转租</view>
+            </navigator>
+            <navigator class="weui-flex__item" hover-class="none" url="/pages/notice/notice">
+                <view class="check color-purple"><i class="iconfont icon-xinxi-copy"></i></view>
+                <view class="placeholder">通知</view>
+            </navigator>
+        </view>
+    </view>
+    <!-- 缴费账单 -->
+    <view class=" page__bd pay bg-white font-m">
+        <navigator class="weui-cell weui-cell_access" hover-class="none" url="/pages/order/payNoOrder">
+            <view class="weui-cell__bd">
+                <view class="title">未缴费订单</view>
+                <view class="weui-badge number">{{ pending ? pending : 0}}</view>
+            </view>
+            <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+        </navigator>
+        <navigator class="weui-cell weui-cell_access" hover-class="none" url="/pages/order/payOrder">
+            <view class="weui-cell__bd">
+                <view class="title">缴费订单确定</view>
+                <view class="weui-badge number">{{ confirm ? confirm : 0}}</view>
+            </view>
+            <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+        </navigator>
+        <navigator class="weui-cell weui-cell_access" hover-class="none" url="/pages/order/signNoOrder">
+            <view class="weui-cell__bd">
+                <view class="title">合同签约</view>
+                <view class="weui-badge number">{{ occupied ? occupied : 0}}</view>
+            </view>
+            <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+        </navigator>
+    </view>
+
+    <!-- 服务订单 -->
+    <!-- <view class="page__bd pay bg-white font-m">
+        <navigator class="weui-cell font-m weui-cell_access service-order" hover-class="none"  url="/pages/serviceOrder/serviceOrder">
+            <view class="weui-cell__bd">
+                <view class="title">服务订单</view>
+                <view class="weui-badge weui-badge_dot small-circle"></view>
+            </view>
+            <view class="weui-cell__ft weui-cell__ft_in-access font-middle">更多</view>
+            <view class="weui-cell weui-cell_access" style='padding: 0'></view>
+        </navigator>
+    </view>
+    <view class="weui-cell weui-cell_access" style='padding:0;height: 0;'></view>
+
+    <view class="page__bd page__bd_spacing bg-white font-m menu-lable" wx:if="{{ serviceOrder }}">
+        <view class="service-order-cont" data-id="{{ serviceOrder.id }}" bindtap="showServiceDetail">
+            <view class="weui-flex">
+                <view>
+                    <view class="placeholder menu-image" wx:if="{{ serviceOrder.type == 'MOVE' }}">
+                        <image src='./../../images/move.png'></image>
+                    </view>
+                    <view class="placeholder menu-image" wx:elif="{{ serviceOrder.type == 'REPAIR' }}">
+                        <image src='./../../images/maintenance.png'></image>
+                    </view>
+                    <view class="placeholder menu-image" wx:else="{{ serviceOrder.type == 'CLEAN' }}">
+                        <image src='./../../images/cleanness.png'></image>
+                    </view>
+                </view>
+                <view class="weui-flex__item menu-lable-info">
+                    <view class="placeholder center">
+                        <view class="placeholder name">{{ serviceOrder.roomunion.number }} {{ serviceOrder.name }}</view>
+                        <view class="color-gary font-lilttle">{{ serviceOrder.time }}</view>
+                    </view>
+                </view>
+                <view>
+                    <view class="placeholder menu-lable-center status_red" wx:if="{{ serviceOrder.deal == 'UNDONE' }}">未处理</view>
+                    <view class="placeholder menu-lable-center status_green" wx:elif="{{ serviceOrder.deal == 'SDOING' }}">正在处理</view>
+                    <view class="placeholder menu-lable-center status_green" wx:else="{{ serviceOrder.deal == 'SDONE' }}">已处理</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="null-sataus bg-white color-gary font-lilttle" wx:else>暂无订单</view> -->
+
+    <!-- 预约看房 -->
+   <!--  <view class="page__bd pay bg-white">
+        <navigator class="weui-cell font-m weui-cell_access service-order" hover-class="none"  url="/pages/reservation/reservation">
+            <view class="weui-cell__bd">
+                <view class="title">预约看房</view>
+                <view class="weui-badge weui-badge_dot small-circle"></view>
+            </view>
+            <view>
+                <view class="weui-cell__ft weui-cell__ft_in-access font-middle">更多</view>
+            </view>
+        </navigator>
+    </view>
+    <view class="weui-cell weui-cell_access" style='padding: 0;height: 0;'></view>
+    <view class="page__bd page__bd_spacing bg-white font-m menu-lable" wx:if="{{ reserveInfo }}">
+        <navigator class="weui-flex" class="weui-flex service-order-cont" hover-class="none" url="/pages/reservation/edit?id={{ reserveInfo.id }}">
+            <view><view class="placeholder menu-lable-img">
+               <image src="{{ reserveInfo.customer ? reserveInfo.customer.avatar:'./../../images/userImg.png' }}"></image>
+            </view></view>
+            <view class="weui-flex__item menu-lable-info">
+                <view class="placeholder center">
+                    <view class="placeholder name">{{ reserveInfo.roomtype.name }} {{ reserveInfo.name }}</view>
+                    <view class="color-gary font-lilttle">备注信息  {{ reserveInfo.remark ? reserveInfo.remark : '无' }}</view>
+                </view>
+            </view>
+            <view><view class="placeholder phone menu-lable-center">
+                <button class="weui-btn contract" type="primary" plain="true" data-phone_number="{{ reserveInfo.phone }}" catchtap="calling">拨打电话</button>
+            </view></view>
+        </navigator>
+    </view>
+    <view class="null-sataus bg-white color-gary font-lilttle" wx:else>暂无订单</view>  -->
+
+    <!-- 审批 -->
+    <view class="page__bd pay bg-white">
+        <navigator class="weui-cell font-m weui-cell_access service-order" hover-class="none"  url="/pages/taskFlow/taskFlowList">
+            <view class="weui-cell__bd"><view class="title"></view></view>
+            <view>
+                <view class="weui-cell__ft weui-cell__ft_in-access font-middle">查看更多</view>
+            </view>
+            <view class="weui-cell weui-cell_access" style='padding: 0'></view>
+        </navigator>
+    </view>
+    <view class="weui-cell weui-cell_access" style='padding: 0;height: 0;'></view>
+
+    <view  wx:if="{{ taskflowList.length> 0}}">
+        <view class="page__bd page__bd_spacing bg-white font-m approval-li" wx:for="{{ taskflowList }}" wx:key="index">
+            <navigator class="weui-flex" wx:if="{{ item.taskflow.type === 'CHECKOUT' || item.taskflow.type === 'NO_LIABILITY' || item.taskflow.type === 'UNDER_CONTRACT' || item.taskflow.type === 'UNDER_CONTRACT_LESS' || item.taskflow.type === 'GIVE_UP' || item.taskflow.type === 'ADD_REFUND' || item.taskflow.type === 'REAL_INCOME_LESS' || item.taskflow.type === 'NORMAL_REFUND' || item.taskflow.type === 'NORMAL_NOT_REFUND' || item.taskflow.type === 'UNDER_REFUND' || item.taskflow.type === 'UNDER_NOT_REFUND' || item.taskflow.type === 'UNDER_NO_REFUND' }}" hover-class="none" url="/pages/taskFlow/checkOutApp?id={{ item.taskflow.ID }}&name=toExamine">
+                <view class="approval-bg"><view></view></view>
+                <view class="weui-flex__item" class="taskflow-left">
+                    <view wx:if="{{ item.taskflow.type === 'CHECKOUT' }}">正常退房</view>
+                    <view wx:elif="{{ item.taskflow.type === 'UNDER_CONTRACT' || item.taskflow.type === 'UNDER_CONTRACT_LESS' }}">违约退房</view>
+                    <view wx:elif="{{ item.taskflow.type === 'NO_LIABILITY' }}">特殊退房</view>
+                    <view wx:elif="{{ item.taskflow.type === 'NORMAL_REFUND' }}">正常退房退款</view>
+                    <view wx:elif="{{ item.taskflow.type === 'NORMAL_NOT_REFUND' }}">正常退房不退款</view>
+                    <view wx:elif="{{ item.taskflow.type === 'UNDER_REFUND' }}">违约退房退款</view>
+                    <view wx:elif="{{ item.taskflow.type === 'UNDER_NOT_REFUND' }}">违约退房不退款</view>
+                    <view wx:elif="{{ item.taskflow.type === 'UNDER_NO_REFUND' }}">违约退房无可退金额</view>
+                    <view wx:elif="{{ item.taskflow.type === 'ADD_REFUND' }}">退房-额外退款</view>
+                    <view wx:elif="{{ item.taskflow.type === 'GIVE_UP' }}">放弃追缴退房</view>
+                    <view wx:else="{{ item.taskflow.type === 'REAL_INCOME_LESS' }}">退房-实际收益金额小于零</view>
+                    <view class='font-lilttle'>{{ item.store_name }}  {{ item.room_number }}  {{ item.taskflow.employee.name }}</view>
+                    <view class='font-lilttle color-gary'>由{{ item.creater_name }}于{{ item.taskflow.CreatedAt }}发起</view>
+                </view>
+                <view class="taskflow-right"><view class="color-gary weui-cell__ft_in-access font-lilttle right-text"><text class="color-green" wx:if="{{ item.current_step  }}">当前审批:{{ item.current_step_show }}</text></view></view>
+            </navigator>
+
+            <navigator class="weui-flex" wx:elif="{{ item.taskflow.type === 'PRICE' }}" hover-class="none" url="/pages/taskFlow/modifyPrice?id={{ item.taskflow.ID }}&name=2">
+                <view class="approval-bg"><view></view></view>
+                <view class="weui-flex__item" class="taskflow-left">
+                    <view>调价</view>
+                    <view class='font-lilttle'>{{ item.store_name }}  {{ item.room_number }}  {{ item.taskflow.employee.name }}</view>
+                    <view class='font-lilttle color-gary'>由{{ item.creater_name }}于{{ item.taskflow.CreatedAt }}发起</view>
+                </view>
+                <view class="taskflow-right"><view class="color-gary weui-cell__ft_in-access font-lilttle right-text"><text class="color-green" wx:if="{{ item.current_step  }}">当前审批:{{ item.current_step_show }}</text></view></view>
+            </navigator>
+            <navigator class="weui-flex" wx:elif="{{ item.taskflow.type === 'TRANSFORM' }}" hover-class="none" url="/pages/taskFlow/sublet?id={{ item.taskflow.ID }}&name=toExamine">
+                <view class="approval-bg"><view></view></view>
+                <view class="weui-flex__item" class="taskflow-left">
+                    <view>转租</view>
+                    <view class='font-lilttle'>{{ item.store_name }}  {{ item.room_number }}</view>
+                    <view class='font-lilttle color-gary'>由{{ item.creater_name }}于{{ item.taskflow.CreatedAt }}发起</view>
+                </view>
+                <view class="taskflow-right"><view class="color-gary weui-cell__ft_in-access font-lilttle right-text"><text class="color-green" wx:if="{{ item.current_step }}">当前审批:{{ item.current_step_show }}</text></view></view>
+            </navigator>
+            <navigator class="weui-flex" wx:elif="{{ item.taskflow.type === 'RESERVE' }}" hover-class="none" url="/pages/reservation/edit?id={{ item.taskflow.ID }}&name=toExamine">
+                <view class="approval-bg"><view></view></view>
+                <view class="weui-flex__item" class="taskflow-left">
+                    <view>预约看房</view>
+                    <view class='font-lilttle'>{{ item.store_name }}  {{ item.taskflow.roomtype.name }}  {{ item.taskflow.reserve.name }}</view>
+                    <view class='font-lilttle color-gary'>由{{ item.creater_name }}于{{ item.taskflow.CreatedAt }}发起</view>
+                </view>
+                <view class="taskflow-right"><view class="color-gary weui-cell__ft_in-access font-lilttle right-text"><text class="color-green" wx:if="{{ item.current_step  }}">当前审批:{{ item.current_step_show }}</text></view></view>
+            </navigator>
+
+            <view class="weui-flex" wx:elif="{{ item.taskflow.type === 'SERVICE' }}" bindtap="showServiceDetail" data-deal="{{ item.service.deal }}" data-id="{{ item.taskflow.ID }}&name=toExamine">
+                <view class="approval-bg"><view></view></view>
+                <view class="weui-flex__item" class="taskflow-left">
+                    <view>服务订单</view>
+                    <view class='font-lilttle'>{{ item.store_name }}   {{ item.room_number }}
+                        <text wx:if="{{ item.taskflow.service.type == 'CLEAN' }}">清洁</text>
+                        <text wx:elif="{{ item.taskflow.service.type == 'MOVE' }}">搬家</text>
+                        <text wx:else="{{ item.taskflow.service.type == 'REPAIR' }}">维修</text>
+                    </view>
+                    <view class='font-lilttle color-gary'>由{{ item.creater_name }}于{{ item.taskflow.CreatedAt }}发起</view>
+                </view>
+                <view class="taskflow-right"><view class="color-gary weui-cell__ft_in-access font-lilttle right-text"><text class="color-green" wx:if="{{ item.nextPositions.taskflow.length > 0  }}">当前审批:{{ item.current_step_show }}</text></view></view>
+            </view>
+
+            <navigator class="weui-flex" wx:else="{{ item.taskflow.type === 'WARNING' }}" hover-class="none" url="/pages/taskFlow/earlyWarning?id={{ item.taskflow.ID }}">
+                <view class="approval-bg"><view></view></view>
+                <view class="weui-flex__item" class="taskflow-left">
+                    <view>安全预警</view>
+                    <view class='font-lilttle'>{{ item.store_name }}   {{ item.room_number }}</view>
+                    <view class='font-lilttle'>{{ item.taskflow.message }}</view>
+                    <view class='font-lilttle color-gary'>由{{ item.creater_name }}于{{ item.taskflow.CreatedAt }}发起</view>
+                </view>
+                <view class="taskflow-right"><view class="color-gary weui-cell__ft_in-access font-lilttle right-text"><text class="color-green" wx:if="{{ item.current_step  }}">当前审批:{{ item.current_step_show }}</text></view></view>
+            </navigator>
+        </view>
+    </view>
+    <view class="null-sataus bg-white color-gary font-lilttle footer" wx:else>暂无订单</view>
+ 
+</view>

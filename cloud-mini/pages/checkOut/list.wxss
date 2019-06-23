@@ -1,0 +1,6 @@
+@import "../residentCenter/residentCenter.wxss";
+.check-out-add{
+	margin-bottom: 20rpx;
+	background: #fff;
+	height: 88rpx;
+}

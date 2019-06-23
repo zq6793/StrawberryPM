@@ -1,0 +1,18 @@
+.weui-cell__ft{font-size: 28rpx;}
+.book_sure{
+  width: 90%;
+  margin: 100rpx auto;
+}
+.weui-label{
+  color: #000;
+}
+.weui-cell__bd{
+  color: rgb(136,136,136);
+}
+
+.weui-cells::after{
+  border: none;  
+}
+.weui-cells::before{
+  border: none;
+}

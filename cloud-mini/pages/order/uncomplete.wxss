@@ -1,0 +1,8 @@
+@import "../serviceOrder/serviceOrderinfo.wxss";
+@import "../information/order.wxss";
+.weui-panel:first-child{
+  margin-top: 20rpx;
+}
+.bottom-flex{
+  width: 100%;
+}

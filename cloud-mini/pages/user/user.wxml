@@ -1,0 +1,51 @@
+<view class="page">
+	<view class="container color-white">
+        <image src="./../../images/bg.png"></image>
+        <text class="edit font-m" bindtap='switchApartment' wx:if="{{isSwitch}}">切换公寓</text>
+        <view class="user-img"><image class="user-imgs" src="{{userPic?userPic:'./../../images/userImg.png'}}" bindtap='switchModify' /></view>
+        <view class="user_position font-bit">{{userName ? userName : user_name}}  {{positionName}}</view>
+        <view class='font-middle'>{{apartment}}</view>
+	</view>
+  
+	<view class="page__bd bg-white user-list font-m">
+		<navigator class="weui-cell weui-cell_access list" hover-class="none" url='/pages/user/roomList'>
+            <view class="weui-cell__bd title"> 
+                <view class="title">房间列表</view>
+            </view>
+            <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+        </navigator>
+        <navigator class="weui-cell weui-cell_access list" hover-class="none" url="/pages/user/dataStatistics">
+            <view class="weui-cell__bd title">
+                <view class="title">数据统计</view>
+            </view>
+            <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+        </navigator>
+        <navigator class="weui-cell weui-cell_access list" hover-class="none" url='/pages/staffManagement/staffmanagement'>
+            <view class="weui-cell__bd title">
+                <view class="title">员工列表</view>
+            </view>
+            <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+        </navigator>
+        <block  wx:if="{{isSwitch}}">
+            <!-- <navigator class="weui-cell weui-cell_access list" hover-class="none" url='/pages/staffManagement/addEmployees?id={{apartmentId}}'>
+                <view class="weui-cell__bd title">
+                    <view class="title">添加员工</view>
+                </view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+            </navigator> -->
+            <navigator class="weui-cell weui-cell_access list" hover-class="none" url='/pages/owner/ownerList'>
+                <view class="weui-cell__bd title">
+                    <view class="title">小业主</view>
+                </view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+            </navigator>
+            <!-- <navigator class="weui-cell weui-cell_access list" hover-class="none" url='/pages/user/todoList'>
+                <view class="weui-cell__bd title">
+                    <view class="title">待办事项</view>
+                </view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+            </navigator> -->
+        </block>
+    </view>
+    <view class="footer">{{ vNumber }}</view>
+</view>

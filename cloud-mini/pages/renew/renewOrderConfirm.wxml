@@ -1,0 +1,106 @@
+<view class="page">
+    <view class="page__bd bg-white cont">
+        <view class="title">续租订单</view>
+        <view class="weui-cell weui-cell_access">
+            <view class="weui-cell__bd">
+                <view>房间号</view>
+            </view>
+            <view class="weui-cell__ft">{{ confirmInfo.room.number }}</view>
+        </view>
+
+        <view class="weui-cell weui-cell_access">
+            <view class="weui-cell__bd">
+                <view>租户姓名</view>
+            </view>
+            <view class="weui-cell__ft">{{ confirmInfo.name }}</view>
+        </view>
+
+        <view class="weui-cell weui-cell_access">
+            <view class="weui-cell__bd">
+                <view>联系电话</view>
+            </view>
+            <view class="weui-cell__ft color-green" data-phone_number="{{ confirmInfo.phone }}" catchtap="calling">{{ confirmInfo.phone }}</view>
+        </view>
+
+        <!-- <view class="weui-cell weui-cell_access">
+            <view class="weui-cell__bd">
+                <view>是否换房</view>
+            </view>
+            <view class="weui-cell__ft">{{ confirmationInfo }}</view>
+        </view> -->
+
+        <view class="weui-cell weui-cell_access">
+            <view class="weui-cell__bd">
+                <view>住宿押金</view>
+            </view>
+            <view class="weui-cell__ft">{{ confirmInfo.deposit_money_rent }}元/月</view>
+        </view>
+
+        <view class="weui-cell weui-cell_access">
+            <view class="weui-cell__bd">
+                <view>其他押金</view>
+            </view>
+            <view class="weui-cell__ft">{{ confirmInfo.deposit_money_other }}元</view>
+        </view>
+
+        <view class="weui-cell weui-cell_access">
+            <view class="weui-cell__bd">
+                <view>住宿服务费</view>
+            </view>
+            <view class="weui-cell__ft">{{ confirmInfo.rent_price }}元/月</view>
+        </view>
+
+        <view class="weui-cell weui-cell_access">
+            <view class="weui-cell__bd">
+                <view>物业服务费</view>
+            </view>
+            <view class="weui-cell__ft">{{ confirmInfo.management_price }}元/月</view>
+        </view>
+
+       <!--  <view class="weui-cell weui-cell_access">
+            <view class="weui-cell__bd">
+                <view>清洁服务费</view>
+            </view>
+            <view class="weui-cell__ft">{{ confirmationInfo }}元/月</view>
+        </view>
+
+        <view class="weui-cell weui-cell_access">
+            <view class="weui-cell__bd">
+                <view>物品赔偿费</view>
+            </view>
+            <view class="weui-cell__ft">{{ confirmationInfo }}元/月</view>
+        </view> -->
+
+        <view class="weui-cell weui-cell_access">
+            <view class="weui-cell__bd">
+                <view>合同时间</view>
+            </view>
+            <view class="weui-cell__ft">{{ confirmInfo.begin_time }}~{{ confirmInfo.end_time }}</view>
+        </view>
+
+        <view class="weui-cell weui-cell_access">
+            <view class="weui-cell__bd">
+                <view>备注信息</view>
+            </view>
+            <view class="weui-cell__ft">{{ confirmInfo.remark ? confirmInfo.remark : '无'}}</view>
+        </view>
+    </view>
+
+    <view class="page__bd page__bd_spacing bottom-flex"> 
+        <view class="weui-flex">
+            <view class="weui-flex__item">
+                <button class="weui-btn" type="primary" bindtap="cancellation" plain="true" data-postid="">取消办理</button>
+            </view>
+            <view class="weui-flex__item">
+                <button class="weui-btn" type="primary" bindtap='submitConfirm' data-postid="">确认办理</button>
+            </view>
+        </view>
+    </view>
+
+    <view class='code' wx:if="{{ isShowCode }}">
+        <view class="code-cont bg-white">            
+            <image class="code-img" src="{{ codeUrl }}"></image>
+            <text class="scan-code-end" bindtap='colseCode'>确认订单并扫码关注</text>
+        </view>
+    </view>
+</view>

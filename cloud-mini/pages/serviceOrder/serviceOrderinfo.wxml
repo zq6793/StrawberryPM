@@ -1,0 +1,88 @@
+<view class="page">
+    <view class="page__bd">
+        <view class="weui-form-preview preview_panel all_border">
+            <view class="weui-form-preview__bd ">
+                <view class="weui-form-preview__hd resident_center service_dis">
+                    <view class="weui-form-preview__item">
+                        <view class="weui-form-preview__label resident_color resident_title">服务房间信息</view>
+                    </view>
+                </view>
+                <view class="weui-form-preview__item min_size">
+                    <view class="weui-form-preview__label min_width font-m">服务房号</view>
+                    <view class="weui-form-preview__value font-m">{{ detail.roomunion.number }}</view>
+                </view>
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label min_width font-m">预约时间</view>
+                    <view class="weui-form-preview__value font-m">{{ detail.time }}</view>
+                </view>
+            </view>
+            <view class="weui-form-preview__bd resident_line ">
+                <view class="weui-form-preview__hd resident_center service_dis">
+                    <view class="weui-form-preview__item">
+                        <view class="weui-form-preview__label resident_color resident_title">服务客人信息</view>
+                    </view>
+                </view>
+                <view class="weui-form-preview__item min_size">
+                    <view class="weui-form-preview__label min_width font-m">姓名</view>
+                    <view class="weui-form-preview__value font-m">{{ detail.name }}</view>
+                </view>
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label min_width font-m">联系方式</view>
+                    <view class="weui-form-preview__value font-m">{{ detail.phone }}</view>
+                </view>
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label min_width font-m">服务类别</view>
+                    <view class="weui-form-preview__value font-m" wx:if="{{ detail.type == 'MOVE' }}">搬家</view>
+                    <view class="weui-form-preview__value font-m" wx:if="{{ detail.type == 'REPAIR' }}">维修</view>
+                    <view class="weui-form-preview__value font-m" wx:if="{{ detail.type == 'CLEAN' }}">清洁</view>
+                </view>
+                <view wx:if="{{ detail.type == 'REPAIR' }}" class="weui-form-preview__item">
+                    <view class="weui-form-preview__label min_width font-m">服务内容</view>
+                    <view class="weui-form-preview__value font-m">{{ detail.addr_from }} - {{ detail.addr_to }}</view>
+                </view>
+                <!-- <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label min_width font-m">费用状态</view>
+                    <view wx:if="{{ detail.status == 'SERVING' || detail.status == 'PAID' }}" class="weui-form-preview__value font-m" wx:if="{{serviceInfos.status == 'PDONE'}}">{{ detail.status_name }}</view>
+                    <view wx:else class="weui-form-preview__value font-m status_red">{{ detail.status_name }}</view>
+                </view>
+                <view wx:if="{{ detail.status == 'PENDING' }}" class="weui-form-preview__item">
+                    <view class="weui-form-preview__label min_width font-m">服务金额</view>
+                    <view class="weui-form-preview__value font-m">{{ detail.money }}</view>
+                </view> -->
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label min_width font-m">备注信息</view>
+                    <view class="weui-form-preview__value font-m">{{ detail.remark ? detail.remark : '无' }}</view>
+                </view>
+            </view>
+        </view>
+
+        <!--这里有三个操作:
+            1.用户付款后, 确定到账, 并将记录更新为服务中
+            2.确定服务完成
+            3.取消该服务-->
+        <view class="bottom-flex" wx:if="{{ status != '2' }}">
+            <!-- <view class="weui-flex" wx:if="{{ detail.deal == 'SDOING' }}">
+                <view class="weui-flex__item">
+                    <button class="weui-btn" type="primary" bindtap='startServing'>开始服务</button>
+                </view>
+            </view> -->
+            <!-- <view class="weui-flex" wx:elif="{{ detail.deal == 'PENDING' }}">
+                <view class="weui-flex__item">
+                    <button class="weui-btn" type="primary" plain="true" bindtap='payForService' data-payway="ALIPAY">转账确认</button>
+                </view>
+                <view class="weui-flex__item">
+                    <button class="weui-btn" type="primary" bindtap='payForService' data-payway="BANK">刷卡确认</button>
+                </view>
+            </view> -->
+            <view class="weui-flex">
+                <view class="weui-flex__item">
+                    <button class="weui-btn" type="primary" plain="true" bindtap='completeService'>服务完成</button>
+                </view>
+                <view class="weui-flex__item">
+                    <button class="weui-btn" type="primary" bindtap='cancelService'>取消订单</button>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+
